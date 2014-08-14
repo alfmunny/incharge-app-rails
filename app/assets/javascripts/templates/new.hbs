@@ -1,0 +1,12 @@
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span6">
+        {{partial 'post/edit'}}
+        <button class="btn" {{action 'create'}}>Create</button>
+        <button class="btn" {{action 'cancel'}}>Cancel</button>
+      </div>
+      <div class="span6">
+        {{partial 'post/view'}}
+      </div>
+    </div>
+  </div>

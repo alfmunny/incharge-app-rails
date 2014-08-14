@@ -1,0 +1,17 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2">
+      <h1 style="bold">Users </h1>
+      <ul class="list-group">
+        {{#each controller}}
+          {{#link-to 'user' this}}
+            <li class="list-group-item">{{name}}</li>
+          {{/link-to}}
+        {{/each}}
+      </ul>
+    </div>
+    <div class="col-md-10">
+      {{outlet}}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+attr = DS.attr;
+Myapp.User = DS.Model.extend({
+  name: attr('string'),
+  expiryDate: attr('date'),
+  email: attr('string'),
+  company: attr('string')
+  //avatar: attr('string')
+  // vehicles: hasMany('vehicle'),
+  // chargePoints: hasMany('chargePoint'),
+  // transactions: hasMany('transaction')
+});
