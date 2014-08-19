@@ -1,4 +1,4 @@
-<div class="panel panel-primary">
+<!-- <div class="panel panel-primary">
   <div class="panel-heading">
     <div class="panel-title">
       <h2 id='title'>Incharge Server</h2>
@@ -9,23 +9,20 @@
       <h5 style="color: #ffffff">Welcome in Incharge!</h5>
     </p>
   </div>
-</div>
+</div> -->
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Blog</a>
+      <a class="navbar-brand" href="#">Incharge</a>
     </div>
     <ul class="nav navbar-nav">
-      <li>
-        {{#link-to 'posts'}}Posts{{/link-to}}
-      </li>
-      <li>
-        {{#link-to 'users'}}Users{{/link-to}}
-      </li>
-      <li>
-        {{#link-to 'about'}}About{{/link-to}}
-      </li>
-      <li class="dropdown">
+      <li> {{#link-to 'users'}}Users{{/link-to}} </li>
+      <li> {{#link-to 'vehicles'}}Vehicles{{/link-to}} </li>
+      <li> {{#link-to 'charge-points'}}Charge Points{{/link-to}} </li>
+      <li> {{#link-to 'transactions'}}Transactions{{/link-to}} </li>
+      <li> {{#link-to 'about'}}About{{/link-to}} </li>
+      <li> {{#link-to 'posts'}}Blog{{/link-to}} </li>
+      <!-- <li class="dropdown">
         <a class="dropdown" data-toggle="dropdown" href="#">Things</a>
         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
           <li><a>Clothing(empty)</a>
@@ -35,7 +32,7 @@
           <li><a href="">Books(empty)</a>
           </li>
         </ul>
-      </li>
+      </li> -->
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li>

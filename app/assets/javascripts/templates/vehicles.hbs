@@ -1,10 +1,10 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-2">
-      <h2 style="bold">Users</h2>
+      <h2 style="bold">Vehicles</h2>
       <ul class="list-group">
         {{#each}}
-          {{#link-to 'user' this}}
+          {{#link-to 'vehicle' this}}
             <li class="list-group-item">{{name}}</li>
           {{/link-to}}
         {{/each}}

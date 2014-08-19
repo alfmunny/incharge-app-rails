@@ -1,4 +1,4 @@
-Myapp.NewController = Ember.ObjectController.extend({
+Myapp.PostsNewController = Ember.ObjectController.extend({
   actions: {
     create: function() {
       this.get('model').save();

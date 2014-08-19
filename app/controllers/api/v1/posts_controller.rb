@@ -1,5 +1,5 @@
 class Api::V1::PostsController < ApplicationController
-	respond_to :json
+	respond_to :json, :xml
 
 	def index
 		respond_with Post.all
