@@ -1,5 +1,7 @@
 class Api::V1::UsersController < ApplicationController
-  respond_to :json, :xml, :html
+  protect_from_forgery
+
+  respond_to :json
 
   def index
     @users = User.all
@@ -17,12 +19,6 @@ class Api::V1::UsersController < ApplicationController
     respond_with @user, location: nil
   end
 
-  def new
-    @user = User.new(params[user_params])
-    @user.save
-    respond_with @user
-  end
-
   def update
     @user = User.update(params[:id], user_params)
     respond_with @user
@@ -35,7 +31,7 @@ class Api::V1::UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:post).permit(:name, :email, :company, :expiry_date)
+    params.require(:user).permit(:name, :email, :company, :expiry_date, :password)
   end
 
 end
