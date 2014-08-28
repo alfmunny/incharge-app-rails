@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+#  resources :charge_points
+
 	root :to => 'static#index'
 
   namespace :api do
@@ -6,6 +8,7 @@ Rails.application.routes.draw do
   		resources :users
 			resources :posts
       resources :vehicles
+      resources :charge_points
    end
   end
 

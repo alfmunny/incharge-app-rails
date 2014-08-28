@@ -2,7 +2,7 @@ class Api::V1::VehiclesController < ApplicationController
   protect_from_forgery
 
   before_action :set_vehicle, only: [:show, :edit, :update, :destroy]
-  respond_to :json
+  respond_to :json, :html
   # GET /vehicles
   # GET /vehicles.json
   def index

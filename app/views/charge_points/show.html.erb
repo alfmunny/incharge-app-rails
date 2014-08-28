@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @charge_point.status %>
+</p>
+
+<p>
+  <strong>Charge point vendor:</strong>
+  <%= @charge_point.charge_point_vendor %>
+</p>
+
+<p>
+  <strong>Charge point model:</strong>
+  <%= @charge_point.charge_point_model %>
+</p>
+
+<p>
+  <strong>Charge point serial number:</strong>
+  <%= @charge_point.charge_point_serial_number %>
+</p>
+
+<p>
+  <strong>Firmware version:</strong>
+  <%= @charge_point.firmware_version %>
+</p>
+
+<p>
+  <strong>Iccid:</strong>
+  <%= @charge_point.iccid %>
+</p>
+
+<p>
+  <strong>Imsi:</strong>
+  <%= @charge_point.imsi %>
+</p>
+
+<p>
+  <strong>Meter type:</strong>
+  <%= @charge_point.meter_type %>
+</p>
+
+<p>
+  <strong>Meter serial number:</strong>
+  <%= @charge_point.meter_serial_number %>
+</p>
+
+<p>
+  <strong>Heartbeat interval:</strong>
+  <%= @charge_point.heartbeat_interval %>
+</p>
+
+<p>
+  <strong>Charge box serial number:</strong>
+  <%= @charge_point.charge_box_serial_number %>
+</p>
+
+<%= link_to 'Edit', edit_charge_point_path(@charge_point) %> |
+<%= link_to 'Back', charge_points_path %>

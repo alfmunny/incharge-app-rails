@@ -13,7 +13,10 @@ Myapp.Router.map(function() {
     this.resource('vehicle', { path: ':vehicle_id'});
   });
 
+  this.resource('charge-points', function () {
+    this.resource('charge-point', { path: ':charge-point_id' });
+  });
+  
   this.resource('transactions');
-  this.resource('charge-points');
   this.resource('about');
 });

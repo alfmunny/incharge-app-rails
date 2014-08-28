@@ -1,0 +1,23 @@
+<div class="container-fluid">
+  <p>Status:
+    {{#if 'isAccepted'}}
+    <span class="label label-success">
+      {{status}}
+    </span>
+    {{else}}
+    <span class="label label-default">
+      {{status}}
+    </span>
+    {{/if}}
+  </p>
+  <p>Charge Point Vender: {{chargePointVendor}}</p>
+  <p>Charge Point Model: {{chargePointModel}}</p>
+  <p> Firmware Version: {{firmwareVersion}} </p>
+  <p> Charge Point Serial Number: {{chargePointSerialNumber}} </p>
+  <p> ICCID: {{iccid}} </p>
+  <p> IMSI: {{imsi}} </p>
+  <p> Meter Type: {{meterType}} </p>
+  <p> Meter Serial Number: {{meterSerialNumber}} </p>
+  <p> Heartbeat Interval: {{heartbeatInterval}} </p>
+  <p> Charge Box Serial Number: {{chargeBoxSerialNumber}} </p>
+</div>

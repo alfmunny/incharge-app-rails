@@ -1,0 +1,61 @@
+<%= form_for(@charge_point) do |f| %>
+  <% if @charge_point.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@charge_point.errors.count, "error") %> prohibited this charge_point from being saved:</h2>
+
+      <ul>
+      <% @charge_point.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.text_field :status %>
+  </div>
+  <div class="field">
+    <%= f.label :charge_point_vendor %><br>
+    <%= f.text_field :charge_point_vendor %>
+  </div>
+  <div class="field">
+    <%= f.label :charge_point_model %><br>
+    <%= f.text_field :charge_point_model %>
+  </div>
+  <div class="field">
+    <%= f.label :charge_point_serial_number %><br>
+    <%= f.text_field :charge_point_serial_number %>
+  </div>
+  <div class="field">
+    <%= f.label :firmware_version %><br>
+    <%= f.text_field :firmware_version %>
+  </div>
+  <div class="field">
+    <%= f.label :iccid %><br>
+    <%= f.text_field :iccid %>
+  </div>
+  <div class="field">
+    <%= f.label :imsi %><br>
+    <%= f.text_field :imsi %>
+  </div>
+  <div class="field">
+    <%= f.label :meter_type %><br>
+    <%= f.text_field :meter_type %>
+  </div>
+  <div class="field">
+    <%= f.label :meter_serial_number %><br>
+    <%= f.text_field :meter_serial_number %>
+  </div>
+  <div class="field">
+    <%= f.label :heartbeat_interval %><br>
+    <%= f.number_field :heartbeat_interval %>
+  </div>
+  <div class="field">
+    <%= f.label :charge_box_serial_number %><br>
+    <%= f.text_field :charge_box_serial_number %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
