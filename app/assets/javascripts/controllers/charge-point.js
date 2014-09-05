@@ -14,5 +14,12 @@ Myapp.ChargePointController = Ember.ObjectController.extend({
   }.observes('model.@each'),
 
   actions: {
+    reset: function () {
+      chargePoint = this.get('model');
+      chargePoint.set('status', 'Not Available');
+      this.set('isAccepted', false);
+      this.get('model').save();
+      this.transitionToRoute('post');
+    }
   }
 });
