@@ -19,7 +19,7 @@ Myapp.ChargePointController = Ember.ObjectController.extend({
       chargePoint.set('status', 'Not Available');
       this.set('isAccepted', false);
       this.get('model').save();
-      this.transitionToRoute('post');
+      this.transitionToRoute('charge-point');
     }
   }
 });
