@@ -20,4 +20,12 @@
   <p> Meter Serial Number: {{meterSerialNumber}} </p>
   <p> Heartbeat Interval: {{heartbeatInterval}} </p>
   <p> Charge Box Serial Number: {{chargeBoxSerialNumber}} </p>
+  <br>
+
+  <h3>Vehicles</h3>
+  {{#each vehicle in vehicles}}
+    <li class="list-group-item">{{vehicle.name}}</li>
+  {{/each}}
+  <p>
+  </p>
 </div>

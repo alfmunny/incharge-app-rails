@@ -1,3 +1,5 @@
+hasMany = DS.hasMany;
+
 Myapp.ChargePoint = DS.Model.extend({
   status: DS.attr('string'),
   chargePointVendor: DS.attr('string'),
@@ -9,5 +11,9 @@ Myapp.ChargePoint = DS.Model.extend({
   meterType: DS.attr('string'),
   meterSerialNumber: DS.attr('string'),
   heartbeatInterval: DS.attr('number'),
-  chargeBoxSerialNumber: DS.attr('string')
+  chargeBoxSerialNumber: DS.attr('string'),
+
+  users: DS.hasMany('user'),
+  vehicles: DS.hasMany('vehicle'),
+  transactions: DS.hasMany('transaction')
 });

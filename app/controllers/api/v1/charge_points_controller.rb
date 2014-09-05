@@ -1,7 +1,8 @@
 class Api::V1::ChargePointsController < ApplicationController
   protect_from_forgery
 
-  before_action :set_charge_point, only: [:show, :edit, :update, :destroy]
+  before_action :set_charge_point, only: [:show, :edit, :update, :destroy,
+    :boot_notification, :heartbeat, :meter_values, :start_transaction, :stop_transaction]
   respond_to :json, :html
 
   # GET /charge_points
@@ -14,7 +15,10 @@ class Api::V1::ChargePointsController < ApplicationController
   # GET /charge_points/1
   # GET /charge_points/1.json
   def show
-    respond_with @charge_point
+    #respond_with(@charge_point, @charge_point.vehicles)
+    respond_to do |format|
+      format.json { render json: @charge_point.to_json(:include => [:vehicles]) }
+    end
   end
 
   # GET /charge_points/new
@@ -35,10 +39,8 @@ class Api::V1::ChargePointsController < ApplicationController
 
     respond_to do |format|
       if @charge_point.save
-        format.html { redirect_to @charge_point, notice: 'Charge point was successfully created.' }
-        format.json { render :show, status: :created, location: nil}
+        format.json { render json: @charge_point, status: :created }
       else
-        format.html { render :new }
         format.json { render json: @charge_point.errors, status: :unprocessable_entity }
       end
     end
@@ -47,15 +49,11 @@ class Api::V1::ChargePointsController < ApplicationController
   # PATCH/PUT /charge_points/1
   # PATCH/PUT /charge_points/1.json
   def update
-    # @charge_point= ChargePoint.update(params[:id], charge_point_params)
-    # respond_with @charge_point
     respond_to do |format|
       if @charge_point.update(charge_point_params)
-        #format.html { redirect_to @charge_point, notice: 'Charge point was successfully updated.' }
         #format.json { render :show, status: :ok, location: nil}
         format.json { render json: @charge_point, status: :ok }
       else
-        format.html { render :edit }
         format.json { render json: @charge_point.errors, status: :unprocessable_entity }
       end
     end
@@ -68,8 +66,50 @@ class Api::V1::ChargePointsController < ApplicationController
   def destroy
     @charge_point.destroy
     respond_to do |format|
-      format.html { redirect_to charge_points_url, notice: 'Charge point was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def boot_notification
+    charge_point_vendor = params[:charge_point_vendor]
+    charge_point_model = params[:charge_point_model]
+    charge_point_serial_number = params[:charge_point_serial_number]
+    charge_box_serial_number = params[:charge_box_serial_number]
+    respond_to do |format|
+      if charge_point_vendor == @charge_point[:charge_point_vendor]
+        @charge_point.update(status: "Accepted")
+        result = { "status" => "Accepted", "current_time" => Time.now,  "heartbeart_interval" => @charge_point[:heartbeat_interval]}
+        #format.json { render json: @charge_point, status: :ok}
+        format.json { render json: result, status: :ok}
+      else
+        result = { "status" => "Rejected", "current_time" => Time.now,  "heartbeart_interval" => @charge_point[:heartbeat_interval]}
+        format.json { render json: result}
+      end
+    end
+  end
+
+  def heartbeat
+    respond_to do |format|
+      result = { "current_time" => Time.now, "heartbeat_interval" => @charge_point[:heartbeat_interval]}
+      format.json { render json: result }
+    end
+  end
+
+  def meter_values
+    respond_to do |format|
+      format.json { render json: @charge_point.errors }
+    end
+  end
+
+  def start_transaction
+    respond_to do |format|
+      format.json { render json: @charge_point }
+    end
+  end
+
+  def stop_transaction
+    respond_to do |format|
+      format.json { render json: @charge_point }
     end
   end
 

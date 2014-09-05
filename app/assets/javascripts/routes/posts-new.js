@@ -2,7 +2,7 @@ Myapp.PostsNewRoute = Ember.Route.extend({
   model: function() {
     return this.store.createRecord('post', {
       author: 'Yuanchen',
-      published_at: new Date()
+      publishedAt: new Date()
     });
   }
 });

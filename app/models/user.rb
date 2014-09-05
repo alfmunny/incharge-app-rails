@@ -6,4 +6,8 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, length: { minimum: 6 }
+
+  has_many :vehicles
+  has_many :transactions
+  has_many :charge_points
 end

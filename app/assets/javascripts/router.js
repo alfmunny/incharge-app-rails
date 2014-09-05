@@ -14,9 +14,12 @@ Myapp.Router.map(function() {
   });
 
   this.resource('charge-points', function () {
-    this.resource('charge-point', { path: ':charge-point_id' });
+    this.resource('charge-point', { path: ':charge_point_id' });
   });
-  
-  this.resource('transactions');
+
+  this.resource('transactions', function () {
+    this.resource('transaction', { path: 'transaction_id' });
+  });
+
   this.resource('about');
 });

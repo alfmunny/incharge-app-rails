@@ -3,5 +3,5 @@ Myapp.Post = DS.Model.extend({
   author: DS.attr('string'),
   intro: DS.attr('string'),
   extended: DS.attr('string'),
-  published_at: DS.attr('date')
+  publishedAt: DS.attr('date')
 });

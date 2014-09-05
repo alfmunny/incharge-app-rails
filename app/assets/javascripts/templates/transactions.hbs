@@ -1,0 +1,17 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2">
+      <h2 style="bold">Transactions</h2>
+      <ul class="list-group">
+        {{#each}}
+          {{#link-to 'transaction' this}}
+            <li class="list-group-item">{{transactionId}}</li>
+          {{/link-to}}
+        {{/each}}
+      </ul>
+    </div>
+    <div class="col-md-10">
+      {{outlet}}
+    </div>
+  </div>
+</div>
