@@ -3,4 +3,18 @@
   <p>expiry date: {{expiryDate}}</p>
   <p>email: {{email}}</p>
   <p>company: {{company}}</p>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">VEHICLES</h4>
+    </div>
+    <div class="panel-body">
+      {{#each vehicles}}
+        <p>
+          {{#link-to 'vehicle' this }}{{name}}{{/link-to}}
+        </p>
+      {{/each}}
+    </div>
+    </table>
+  </div>
 </div>

@@ -1,5 +1,8 @@
 <div class="container-fluid">
-  <p>Status:
+  <div class="charge-point-status">
+    <h3>InCharge 1</h3>
+    <hr>
+    <strong>Status</strong>:
     {{#if 'isAccepted'}}
     <span class="label label-success">
       {{status}}
@@ -10,25 +13,95 @@
     </span>
     {{/if}}
     <button class="btn btn-default btn-sm" {{action 'reset'}}>reset</button>
-  </p>
+  </div>
 
+  <hr>
 
-  <p>Charge Point Vender: {{chargePointVendor}}</p>
-  <p>Charge Point Model: {{chargePointModel}}</p>
-  <p> Firmware Version: {{firmwareVersion}} </p>
-  <p> Charge Point Serial Number: {{chargePointSerialNumber}} </p>
-  <p> ICCID: {{iccid}} </p>
-  <p> IMSI: {{imsi}} </p>
-  <p> Meter Type: {{meterType}} </p>
-  <p> Meter Serial Number: {{meterSerialNumber}} </p>
-  <p> Heartbeat Interval: {{heartbeatInterval}} </p>
-  <p> Charge Box Serial Number: {{chargeBoxSerialNumber}} </p>
-  <br>
+  <div class="charge-point-configuration panel panel-default">
+    <div class="panel-heading">
+      <h5 class="panel-title">
+        <a data-toggle="collapse" href="#cp-configuration">
+          CONFIGURATION
+        </a>
+      </h5>
+    </div>
+    <div id="cp-configuration" class="collapse in">
+      <div class="panel-body">
+        <dl class="dl-horizontal">
+          <dt>Charge Point Vender</dt>
+          <dd>{{chargePointVendor}}</dd>
+          <dt>Charge Point Model</dt>
+          <dd>{{chargePointModel}}</dd>
+          <dt>Firmware Version</dt>
+          <dd>{{firmwareVersion}}</dd>
+          <dt>Charge Point Serial Nr.</dt>
+          <dd>{{chargePointSerialNumber}}</dd>
+          <dt>ICCID</dt>
+          <dd>{{iccid}}</dd>
+          <dt>IMSI</dt>
+          <dd>{{imsi}}</dd>
+          <dt>Meter Type</dt>
+          <dd>{{meterType}}</dd>
+          <dt>Meter Serial Nr.</dt>
+          <dd>{{meterSerialNumber}}</dd>
+          <dt> Heartbeat Interval</dt>
+          <dd>{{heartbeatInterval}}</dd>
+          <dt>Charge Box Serial Nr.</dt>
+          <dd>{{chargeBoxSerialNumber}}</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
 
-  <h3>Vehicles</h3>
-  {{#each vehicle in vehicles}}
-    <li class="list-group-item">{{vehicle.name}}</li>
-  {{/each}}
-  <p>
-  </p>
+  <div class="vehicles panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">
+        <h5>VEHICLES</h5>
+      </div>
+    </div>
+    <div class="panel-body">
+      <ul class="list-group">
+        {{#each vehicles}}
+          {{#link-to 'vehicle' this}}
+            <p>{{this.name}}</p>
+          {{/link-to}}
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+
+  <div class="users panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">
+        <h5>USERS</h5>
+      </div>
+    </div>
+    <div class="panel-body">
+      <ul class="list-group">
+        {{#each users}}
+          {{#link-to 'user' this}}
+            <p>{{this.name}}</p>
+          {{/link-to}}
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+
+  <div class="users panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">
+        <h5>TRANSACTIONS</h5>
+      </div>
+    </div>
+    <div class="panel-body">
+      <ul class="list-group">
+        {{#each transactions}}
+          {{#link-to 'transaction' this}}
+            <p>{{this.id}} <span class="small">at {{this.createdAt}}</span></p>
+          {{/link-to}}
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+
 </div>

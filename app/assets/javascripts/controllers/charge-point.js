@@ -10,9 +10,6 @@ Myapp.ChargePointController = Ember.ObjectController.extend({
     }
   }.property('model.@each'),
 
-  isAcceptedChanged: function () {
-  }.observes('model.@each'),
-
   actions: {
     reset: function () {
       chargePoint = this.get('model');

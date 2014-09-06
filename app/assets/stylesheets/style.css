@@ -12,3 +12,7 @@ ember.text-field, .ember-text-area {
 
 .navbar {
 }
+
+.main {
+	padding-top: 25px
+}

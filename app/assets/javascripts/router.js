@@ -18,8 +18,8 @@ Myapp.Router.map(function() {
   });
 
   this.resource('transactions', function () {
-    this.resource('transaction', { path: 'transaction_id' });
-  });
+    this.resource('transaction', { path: ':transaction_id' });
+});
 
   this.resource('about');
 });

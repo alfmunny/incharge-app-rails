@@ -1,6 +1,7 @@
 hasMany = DS.hasMany;
 
 Myapp.ChargePoint = DS.Model.extend({
+  name: DS.attr('string'),
   status: DS.attr('string'),
   chargePointVendor: DS.attr('string'),
   chargePointModel: DS.attr('string'),

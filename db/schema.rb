@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140904220244) do
+ActiveRecord::Schema.define(version: 20140906213602) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,12 @@ ActiveRecord::Schema.define(version: 20140904220244) do
     t.string   "charge_box_serial_number"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
+  end
+
+  create_table "charge_points_users", id: false, force: true do |t|
+    t.integer "charge_point_id", null: false
+    t.integer "user_id",         null: false
   end
 
   create_table "charge_points_vehicles", id: false, force: true do |t|
@@ -54,7 +60,14 @@ ActiveRecord::Schema.define(version: 20140904220244) do
     t.float    "bill"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "vehicle_id"
+    t.integer  "charge_point_id"
   end
+
+  add_index "transactions", ["charge_point_id"], name: "index_transactions_on_charge_point_id", using: :btree
+  add_index "transactions", ["user_id"], name: "index_transactions_on_user_id", using: :btree
+  add_index "transactions", ["vehicle_id"], name: "index_transactions_on_vehicle_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"
@@ -67,6 +80,11 @@ ActiveRecord::Schema.define(version: 20140904220244) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+
+  create_table "users_vehicles", id: false, force: true do |t|
+    t.integer "vehicle_id", null: false
+    t.integer "user_id",    null: false
+  end
 
   create_table "vehicles", force: true do |t|
     t.string   "vehicle_type"

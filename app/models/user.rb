@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, length: { minimum: 6 }
 
-  has_many :vehicles
+  has_and_belongs_to_many :vehicles
+  has_and_belongs_to_many :charge_points
   has_many :transactions
-  has_many :charge_points
 end
