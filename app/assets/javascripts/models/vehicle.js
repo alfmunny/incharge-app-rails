@@ -7,6 +7,6 @@ Myapp.Vehicle = DS.Model.extend({
   createdAt: attr('date'),
 
   users: hasMany('user'),
-  transactions: hasMany('transaction'),
+  trades: hasMany('trade'),
   chargePoints: hasMany('chargePoint')
 });

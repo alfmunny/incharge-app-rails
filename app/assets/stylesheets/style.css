@@ -14,5 +14,18 @@ ember.text-field, .ember-text-area {
 }
 
 .main {
-	padding-top: 25px
+	padding-top: 25px;
+}
+
+.box {
+	border: 1px solid;
+}
+
+.time {
+	font-size: 12px;
+	color: #bbb;
+}
+
+img {
+	max-width: 100%;
 }

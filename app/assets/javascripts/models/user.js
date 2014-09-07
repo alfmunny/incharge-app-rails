@@ -9,5 +9,5 @@ Myapp.User = DS.Model.extend({
 
   vehicles: hasMany('vehicle'),
   chargePoints: hasMany('chargePoint'),
-  transactions: hasMany('transaction')
+  trades: hasMany('trade')
 });

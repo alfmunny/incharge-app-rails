@@ -16,5 +16,5 @@ Myapp.ChargePoint = DS.Model.extend({
 
   users: DS.hasMany('user'),
   vehicles: DS.hasMany('vehicle'),
-  transactions: DS.hasMany('transaction')
+  trades: DS.hasMany('trade')
 });

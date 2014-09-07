@@ -1,1 +1,2 @@
-Myapp.VehiclesController = Ember.ArrayController.extend({});
+Myapp.VehiclesController = Ember.ArrayController.extend({
+});

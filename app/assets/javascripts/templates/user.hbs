@@ -1,8 +1,22 @@
-<div class="fluid-container">
-  <h2>{{name}}</h2>
-  <p>expiry date: {{expiryDate}}</p>
-  <p>email: {{email}}</p>
-  <p>company: {{company}}</p>
+<div class="container-fluid">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">PROFILE</h4>
+    </div>
+    <div class="panel-body">
+      <div class="col-md-9">
+      <p><strong>{{name}}</strong> </p>
+      <hr>
+      <p><span class="glyphicon glyphicon-envelope"></span> {{email}} </p>
+      <p> <span class="glyphicon glyphicon-map-marker"></span> {{company}} </p>
+      <p><span class="glyphicon glyphicon-bell"></span> {{date expiryDate}} </p>
+      </div>
+      <div class="col-md-3">
+          <img src="https://avatars2.githubusercontent.com/u/2964880?v=2&s=460" alt="" />
+      </div>
+    </div>
+    </table>
+  </div>
 
   <div class="panel panel-default">
     <div class="panel-heading">
@@ -15,6 +29,31 @@
         </p>
       {{/each}}
     </div>
-    </table>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">CHARGE POINT</h4>
+    </div>
+    <div class="panel-body">
+      {{#each chargePoints}}
+        <p>
+          {{#link-to 'charge-point' this }}{{name}}{{/link-to}}
+        </p>
+      {{/each}}
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">TRADES</h4>
+    </div>
+    <div class="panel-body">
+      {{#each trades}}
+        <p>
+          {{#link-to 'trade' this }}{{transactionId}}<span class="small"> at {{date createdAt}}</span>{{/link-to}}
+        </p>
+      {{/each}}
+    </div>
   </div>
 </div>

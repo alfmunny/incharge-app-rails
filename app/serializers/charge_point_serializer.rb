@@ -7,5 +7,5 @@ class ChargePointSerializer < ActiveModel::Serializer
             :created_at, :updated_at
   has_many :vehicles, embed: :ids, include: true
   has_many :users, embed: :ids, include: true
-  has_many :transactions, embed: :ids, include: true
+  has_many :trades, embed: :ids, include: true
 end

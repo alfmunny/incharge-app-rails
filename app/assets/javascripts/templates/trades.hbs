@@ -1,0 +1,27 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2">
+    </div>
+
+    <div class="col-md-8">
+      <h2 style="bold">Trades</h2>
+      <ul class="list-group">
+        {{#each}}
+        <p>
+          <span class="time">{{date createdAt}} </span>
+          at {{#link-to 'charge-point' this.chargePoint}}{{chargePoint.name}}{{/link-to}}
+        </p>
+        <p>
+          {{#link-to 'user' this.user}}{{user.name}}{{/link-to}}
+          has finished trade {{#link-to 'trade' this}}{{transactionId}}{{/link-to}}
+          by charging vehicle {{#link-to 'vehicle' this.vehicle}}{{vehicle.name}}{{/link-to}}
+        </p>
+        <hr>
+        {{/each}}
+      </ul>
+    </div>
+    <div class="col-md-10">
+      {{outlet}}
+    </div>
+  </div>
+</div>

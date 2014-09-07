@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Power:</strong>
+  <%= @record.power %>
+</p>
+
+<p>
+  <strong>Current:</strong>
+  <%= @record.current %>
+</p>
+
+<p>
+  <strong>Voltage:</strong>
+  <%= @record.voltage %>
+</p>
+
+<%= link_to 'Edit', edit_record_path(@record) %> |
+<%= link_to 'Back', records_path %>

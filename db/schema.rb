@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140906213602) do
+ActiveRecord::Schema.define(version: 20140907144420) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,7 +53,18 @@ ActiveRecord::Schema.define(version: 20140906213602) do
     t.datetime "updated_at"
   end
 
-  create_table "transactions", force: true do |t|
+  create_table "records", force: true do |t|
+    t.float    "power"
+    t.float    "current"
+    t.float    "voltage"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "trade_id"
+  end
+
+  add_index "records", ["trade_id"], name: "index_records_on_trade_id", using: :btree
+
+  create_table "trades", force: true do |t|
     t.string   "transaction_id"
     t.string   "status"
     t.float    "energy"
@@ -65,9 +76,9 @@ ActiveRecord::Schema.define(version: 20140906213602) do
     t.integer  "charge_point_id"
   end
 
-  add_index "transactions", ["charge_point_id"], name: "index_transactions_on_charge_point_id", using: :btree
-  add_index "transactions", ["user_id"], name: "index_transactions_on_user_id", using: :btree
-  add_index "transactions", ["vehicle_id"], name: "index_transactions_on_vehicle_id", using: :btree
+  add_index "trades", ["charge_point_id"], name: "index_trades_on_charge_point_id", using: :btree
+  add_index "trades", ["user_id"], name: "index_trades_on_user_id", using: :btree
+  add_index "trades", ["vehicle_id"], name: "index_trades_on_vehicle_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"

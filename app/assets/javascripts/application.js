@@ -17,11 +17,11 @@
 //= require ember-data
 //= require moment
 //= require showdown
-//= require bootstrap 
+//= require bootstrap
+//= require highcharts
 //= require_self
 //= require ./myapp
 //= require_tree .
 
 // for more details see: http://emberjs.com/guides/application/
 Myapp = Ember.Application.create();
-

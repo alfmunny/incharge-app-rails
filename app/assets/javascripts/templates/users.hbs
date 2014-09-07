@@ -1,14 +1,26 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-3">
-      <h2 style="bold">Users</h2>
-      <ul class="list-group">
+      <table class="table">
+       <thead>
+         <tr>
+           <th>
+             Users
+           </th>
+         </tr>
+       </thead>
+      <tbody>
         {{#each}}
-          {{#link-to 'user' this}}
-            <li class="list-group-item">{{name}}</li>
-          {{/link-to}}
+          <tr>
+            <td>
+            {{#link-to 'user' this}}
+              {{name}}
+            {{/link-to}}
+            </td>
+          </tr>
         {{/each}}
-      </ul>
+      </tbody>
+    </table>
     </div>
     <div class="col-md-6">
       {{outlet}}

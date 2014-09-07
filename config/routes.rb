@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-#  resources :transactions
-#  resources :charge_points
+  resources :trades
+
 	root :to => 'static#index'
 
   namespace :api do
@@ -17,7 +17,8 @@ Rails.application.routes.draw do
 					get 'stop_transaction'
 				end
 			end
-			resources :transactions
+			resources :trades
+  		resources :records
    end
   end
 

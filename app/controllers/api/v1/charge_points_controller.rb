@@ -17,7 +17,7 @@ class Api::V1::ChargePointsController < ApplicationController
   def show
     #respond_with(@charge_point, @charge_point.vehicles)
     respond_to do |format|
-      format.json { render json: @charge_point.to_json(:include => [:vehicles]) }
+      format.json { render json: @charge_point }
     end
   end
 

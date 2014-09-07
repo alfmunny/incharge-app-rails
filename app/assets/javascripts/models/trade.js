@@ -1,6 +1,7 @@
 belongsTo = DS.belongsTo;
+hasMany = DS.hasMany;
 
-Myapp.Transaction = DS.Model.extend({
+Myapp.Trade = DS.Model.extend({
   transactionId: DS.attr('string'),
   status: DS.attr('string'),
   energy: DS.attr('number'),
@@ -10,5 +11,6 @@ Myapp.Transaction = DS.Model.extend({
 
   user: belongsTo('user'),
   chargePoint: belongsTo('chargePoint'),
-  vehicle: belongsTo('vehicle')
+  vehicle: belongsTo('vehicle'),
+  records: hasMany('record')
 });

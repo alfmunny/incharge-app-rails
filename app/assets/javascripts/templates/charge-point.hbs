@@ -90,14 +90,14 @@
   <div class="users panel panel-default">
     <div class="panel-heading">
       <div class="panel-title">
-        <h5>TRANSACTIONS</h5>
+        <h5>TRADES</h5>
       </div>
     </div>
     <div class="panel-body">
       <ul class="list-group">
-        {{#each transactions}}
-          {{#link-to 'transaction' this}}
-            <p>{{this.id}} <span class="small">at {{this.createdAt}}</span></p>
+        {{#each trades}}
+          {{#link-to 'trade' this}}
+            <p>{{this.id}} <span class="small">at {{date this.createdAt}}</span></p>
           {{/link-to}}
         {{/each}}
       </ul>
