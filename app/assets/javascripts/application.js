@@ -19,6 +19,7 @@
 //= require showdown
 //= require bootstrap
 //= require highcharts
+//= require websocket_rails/main
 //= require_self
 //= require ./myapp
 //= require_tree .

@@ -47,6 +47,10 @@ Myapp.TradeView = Ember.View.extend({
           series: [{
               name: 'Power',
               data: power
+          }, {
+              name: 'Current',
+              data: current 
+
           }]
       });
   });
