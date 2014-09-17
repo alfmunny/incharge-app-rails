@@ -36,6 +36,9 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 	config.ember.variant = :development
 
+  # picture uploader Paperclip
+  Paperclip.options[:command_path] = "/usr/local/bin/"
+
   # Remove middleware for Web
-  config.middleware.delete Rack::Lock
+  #config.middleware.delete Rack::Lock
 end

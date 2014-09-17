@@ -15,6 +15,8 @@ gem 'coffee-rails', '~> 4.0.0'
 # gem 'therubyracer',  platforms: :ruby
 gem 'highcharts-rails'
 gem 'websocket-rails'
+gem 'puma'
+gem "paperclip", "~> 4.2"
 
 group :development, :test do
   gem 'rspec-rails'

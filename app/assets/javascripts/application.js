@@ -26,3 +26,12 @@
 
 // for more details see: http://emberjs.com/guides/application/
 Myapp = Ember.Application.create();
+//
+// jQuery(document).ready(function() {
+//   setTimeout(function() {
+//     var source = new EventSource('/');
+//     source.addEventListener('refresh', function(e) {
+//       window.location.reload();
+//     });
+//   }, 1);
+// });

@@ -1,5 +1,24 @@
 <div class="container-fluid">
-  <h2>{{name}}</h2>
-  <p>Vehicle type: {{vehicleType}}</p>
-  <p>created at: {{createdAt}}</p>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">PROFILE</h4>
+    </div>
+    <div class="panel-body">
+      <p><strong>{{name}}</strong></h2>
+      <p>Type: {{vehicleType}}</p>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">TRADES</h4>
+    </div>
+    <div class="panel-body">
+      {{#each trades}}
+        <p>
+          {{#link-to 'trade' this}}{{transactionId}}<span class="small"> at {{date createdAt}}</span>{{/link-to}}
+        </p>
+      {{/each}}
+    </div>
+  </div>
 </div>

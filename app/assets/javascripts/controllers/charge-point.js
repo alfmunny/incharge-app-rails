@@ -8,7 +8,7 @@ Myapp.ChargePointController = Ember.ObjectController.extend({
     } else {
       return false;
     }
-  }.property('model.@each'),
+  }.property('model'),
 
   actions: {
     reset: function () {

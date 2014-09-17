@@ -5,17 +5,19 @@
   <div class="col-md-6">
     <div class="panel panel-default">
       <div class="panel-body">
+        <p class="time">
+          {{date createdAt}}
+        </p>
         <p> Transaction ID: {{transactionId}} </p>
         <p> Energy: {{energy}} kWh </p>
         <p> Bill: {{bill}} Euro </p>
-        <p> Customer: {{user.name}} </p>
-        <p> Charge Point: {{chargePoint.name}} </p>
-        <p> Vehicle: {{vehicle.name}} </p>
-        <p> Date: {{date createdAt}}</p>
+        <p> Customer: {{#link-to 'user' this.user}}{{user.name}}{{/link-to}} </p>
+        <p> Charge Point: {{#link-to 'charge-point' this.chargePoint}}{{chargePoint.name}}{{/link-to}} </p>
+        <p> Vehicle: {{#link-to 'vehicle' this.vehicle}}{{vehicle.name}}{{/link-to}} </p>
       </div>
     </div>
-    <div id="records-chart" class="records-chart">
-    </div>
+  </div>
+  <div id="records-chart" class="records-chart">
   </div>
 
 </div>

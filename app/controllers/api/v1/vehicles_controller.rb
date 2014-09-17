@@ -1,13 +1,19 @@
 class Api::V1::VehiclesController < ApplicationController
   protect_from_forgery
+  include ActionController::Live
 
   before_action :set_vehicle, only: [:show, :edit, :update, :destroy]
-  respond_to :json, :html
+  respond_to :json
   # GET /vehicles
   # GET /vehicles.json
   def index
     @vehicles = Vehicle.all
     respond_with @vehicles
+
+    #response.headers['Content-Type'] = 'text/event-stream'
+    # data = @vehicles.to_json
+    # response.stream.write "{data: #{data}"
+    # response.stream.close
   end
 
   # GET /vehicles/1
@@ -34,10 +40,8 @@ class Api::V1::VehiclesController < ApplicationController
 
     respond_to do |format|
       if @vehicle.save
-        format.html { redirect_to @vehicle, notice: 'Vehicle was successfully created.' }
-        format.json { render :show, status: :created, location: @vehicle }
+        format.json { render json: @vehicle, status: :created }
       else
-        format.html { render :new }
         format.json { render json: @vehicle.errors, status: :unprocessable_entity }
       end
     end
@@ -48,10 +52,8 @@ class Api::V1::VehiclesController < ApplicationController
   def update
     respond_to do |format|
       if @vehicle.update(vehicle_params)
-        format.html { redirect_to @vehicle, notice: 'Vehicle was successfully updated.' }
-        format.json { render :show, status: :ok, location: @vehicle }
+        format.json { render json: @vehicle, status: :ok }
       else
-        format.html { render :edit }
         format.json { render json: @vehicle.errors, status: :unprocessable_entity }
       end
     end
@@ -62,7 +64,6 @@ class Api::V1::VehiclesController < ApplicationController
   def destroy
     @vehicle.destroy
     respond_to do |format|
-      format.html { redirect_to vehicles_url, notice: 'Vehicle was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -75,6 +76,6 @@ class Api::V1::VehiclesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def vehicle_params
-      params.require(:vehicle).permit(:vehicle_type, :name)
+      params.require(:vehicle).permit(:vehicle_type, :name, :avatar)
     end
 end

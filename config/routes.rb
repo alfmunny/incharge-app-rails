@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  resources :trades
-
 	root :to => 'static#index'
 
   namespace :api do
@@ -10,6 +8,7 @@ Rails.application.routes.draw do
       resources :vehicles
       resources :charge_points do
 				member do
+					get 'authorize'
 					get 'boot_notification'
 					get 'heartbeat'
 					get 'start_transaction'

@@ -2,7 +2,7 @@ class Api::V1::ChargePointsController < ApplicationController
   protect_from_forgery
 
   before_action :set_charge_point, only: [:show, :edit, :update, :destroy,
-    :boot_notification, :heartbeat, :meter_values, :start_transaction, :stop_transaction]
+    :authorize, :boot_notification, :heartbeat, :meter_values, :start_transaction, :stop_transaction]
   respond_to :json, :html
 
   # GET /charge_points
@@ -70,6 +70,12 @@ class Api::V1::ChargePointsController < ApplicationController
     end
   end
 
+  def authorize
+    respond_to do |format|
+      format.json { render json: @charge_point }
+    end
+  end
+
   def boot_notification
     charge_point_vendor = params[:charge_point_vendor]
     charge_point_model = params[:charge_point_model]
@@ -97,7 +103,7 @@ class Api::V1::ChargePointsController < ApplicationController
 
   def meter_values
     respond_to do |format|
-      format.json { render json: @charge_point.errors }
+      format.json { render json: @charge_point }
     end
   end
 
@@ -121,6 +127,8 @@ class Api::V1::ChargePointsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def charge_point_params
-      params.require(:charge_point).permit(:status, :charge_point_vendor, :charge_point_model, :charge_point_serial_number, :firmware_version, :iccid, :imsi, :meter_type, :meter_serial_number, :heartbeat_interval, :charge_box_serial_number)
+      params.require(:charge_point).permit(:status, :charge_point_vendor, :charge_point_model,
+      :charge_point_serial_number, :firmware_version, :iccid, :imsi, :meter_type, :meter_serial_number,
+      :heartbeat_interval, :charge_box_serial_number)
     end
 end
