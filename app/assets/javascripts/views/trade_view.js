@@ -35,7 +35,6 @@ Myapp.TradeView = Ember.View.extend({
           }],
 
           tooltip: {
-              valueSuffix: 'kW'
           },
 
           legend: {
@@ -46,11 +45,16 @@ Myapp.TradeView = Ember.View.extend({
           },
           series: [{
               name: 'Power',
-              data: power
+              data: power,
+              tooltip: {
+                valueSuffix: ' kW'
+              }
           }, {
               name: 'Current',
-              data: current 
-
+              data: current,
+              tooltip: {
+                valueSuffix: ' A'
+              }
           }]
       });
   });

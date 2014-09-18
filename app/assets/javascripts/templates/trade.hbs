@@ -8,7 +8,8 @@
         <p class="time">
           {{date createdAt}}
         </p>
-        <p> Transaction ID: {{transactionId}} </p>
+        <p> Transaction ID: {{id}} </p>
+        <p> Status: {{status}} </p>
         <p> Energy: {{energy}} kWh </p>
         <p> Bill: {{bill}} Euro </p>
         <p> Customer: {{#link-to 'user' this.user}}{{user.name}}{{/link-to}} </p>

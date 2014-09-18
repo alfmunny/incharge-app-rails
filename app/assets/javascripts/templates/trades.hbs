@@ -13,7 +13,7 @@
         </p>
         <p>
           {{#link-to 'user' this.user}}{{user.name}}{{/link-to}}
-          has finished trade {{#link-to 'trade' this}}{{transactionId}}{{/link-to}}
+          has <kbd class="text-lowercase">{{status}}</kbd> trade {{#link-to 'trade' this}}{{id}}{{/link-to}}
           by charging vehicle {{#link-to 'vehicle' this.vehicle}}{{vehicle.name}}{{/link-to}}
         </p>
         <hr>

@@ -102,8 +102,23 @@ class Api::V1::ChargePointsController < ApplicationController
   end
 
   def meter_values
+    # Mandatory Parameters
+    connector_id = params[:connector_id]
+    # Optional Parameters
+    transaction_id = params[:transaction_id]
+    values = params[:values]
+
     respond_to do |format|
-      format.json { render json: @charge_point }
+      if connector_id && transaction_id && values
+        @trade = Trade.find(transaction_id)
+        @connector = Connector.find(connector_id)
+        @record = Record.create(trade_id: @trade.id, power: values[:power], current: values[:current])
+        result = {}
+        format.json { render json: @record }
+      else
+        result = { "error" => "parameters required" }
+        format.json { render json: result }
+      end
     end
   end
 
@@ -118,33 +133,36 @@ class Api::V1::ChargePointsController < ApplicationController
     vehicle_id = params[:vehicle_id]
 
     respond_to do |format|
-      @user = User.find_by(id_tag: id_tag)
-      if @user
-        if @user.expiry_date > Date.today
-          @trade = Trade.create(user_id: @user.id, charge_point_id: @charge_point.id, connector_id: connector_id, energy: 0, bill: 0, status: 'Started')
-          if vehicle_id and Vehicle.find(vehicle_id)
-            @trade.update(transaction_id: @trade.id, vehicle_id: vehicle_id)
-          else
-            @trade.update(transaction_id: @trade.id)
+      if id_tag && connector_id && timestamp && meter_start
+        @user = User.find_by(id_tag: id_tag)
+        if @user
+          if @user.expiry_date > Date.today
+            @trade = Trade.create(user_id: @user.id, charge_point_id: @charge_point.id, connector_id: connector_id, energy: 0, bill: 0, status: 'Started')
+            if vehicle_id and Vehicle.find(vehicle_id)
+              @trade.update(vehicle_id: vehicle_id)
+            end
+            result = {
+              "transaction_id" => @trade.id,
+              "id_tag_info" => { "status" => "Accepted", "expiry_date" => @user.expiry_date, "parent_id_tag" => "" }
+            }
+            #result = { "id_tag" => id_tag }
+            format.json { render json: result }
+          else @user.expiry_date < Date.tody
+            result = {
+              "transaction_id" => "null",
+              "id_tag_info" => { "status" => "Expired", "expiry_date" => @user.expiry_date, "parent_id_tag" => "" }
+            }
+            format.json { render json: result }
           end
-          result = {
-            "transaction_id" => @trade.transaction_id,
-            "id_tag_info" => { "status" => "Accepted", "expiry_date" => @user.expiry_date, "parent_id_tag" => "" }
-          }
-          #result = { "id_tag" => id_tag }
-          format.json { render json: result }
-        else @user.expiry_date < Date.tody
+        else
           result = {
             "transaction_id" => "null",
-            "id_tag_info" => { "status" => "Expired", "expiry_date" => @user.expiry_date, "parent_id_tag" => "" }
+            "id_tag_info" => { "status" => "Invalid", "expiry_date" => "", "parent_id_tag" => "" }
           }
           format.json { render json: result }
         end
       else
-        result = {
-          "transaction_id" => "null",
-          "id_tag_info" => { "status" => "Invalid", "expiry_date" => "", "parent_id_tag" => "" }
-        }
+        result = { "error" => "parameters required"}
         format.json { render json: result }
       end
     end
@@ -162,7 +180,7 @@ class Api::V1::ChargePointsController < ApplicationController
 
     respond_to do |format|
       if meter_stop && transaction_id && timestamp
-        @trade = Trade.find_by(transaction_id: transaction_id)
+        @trade = Trade.find(transaction_id)
         @user = User.find(@trade.user_id)
         @trade.update(status: "Finished", meter_stop: meter_stop)
         result = { "id_tag_info" => { "status" => "Accepted", "expiry_date" => @user.expiry_date, "parent_id_tag" => "" } }
