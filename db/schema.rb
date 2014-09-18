@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140907144420) do
+ActiveRecord::Schema.define(version: 20140918131653) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,15 @@ ActiveRecord::Schema.define(version: 20140907144420) do
     t.integer "charge_point_id", null: false
     t.integer "vehicle_id",      null: false
   end
+
+  create_table "connectors", force: true do |t|
+    t.string   "name"
+    t.integer  "charge_point_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "connectors", ["charge_point_id"], name: "index_connectors_on_charge_point_id", using: :btree
 
   create_table "posts", force: true do |t|
     t.string   "title"
@@ -74,9 +83,11 @@ ActiveRecord::Schema.define(version: 20140907144420) do
     t.integer  "user_id"
     t.integer  "vehicle_id"
     t.integer  "charge_point_id"
+    t.integer  "connector_id"
   end
 
   add_index "trades", ["charge_point_id"], name: "index_trades_on_charge_point_id", using: :btree
+  add_index "trades", ["connector_id"], name: "index_trades_on_connector_id", using: :btree
   add_index "trades", ["user_id"], name: "index_trades_on_user_id", using: :btree
   add_index "trades", ["vehicle_id"], name: "index_trades_on_vehicle_id", using: :btree
 
@@ -88,6 +99,7 @@ ActiveRecord::Schema.define(version: 20140907144420) do
     t.string   "password_digest"
     t.date     "expiry_date"
     t.string   "company"
+    t.string   "id_tag"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

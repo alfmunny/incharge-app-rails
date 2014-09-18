@@ -1,6 +1,7 @@
 attr = DS.attr;
 hasMany = DS.hasMany;
 Myapp.User = DS.Model.extend({
+  idTag: attr('string'),
   name: attr('string'),
   expiryDate: attr('date'),
   email: attr('string'),

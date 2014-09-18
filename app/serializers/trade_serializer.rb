@@ -4,4 +4,5 @@ class TradeSerializer < ActiveModel::Serializer
   has_one :vehicle, embed: :ids, include: true
   has_one :charge_point, embed: :ids, include: true
   has_many :records, embed: :ids, include: true
+  has_one :connector, embed: :ids, include: true
 end

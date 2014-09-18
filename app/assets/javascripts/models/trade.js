@@ -11,6 +11,7 @@ Myapp.Trade = DS.Model.extend({
 
   user: belongsTo('user'),
   chargePoint: belongsTo('chargePoint'),
+  connector: belongsTo('connector'),
   vehicle: belongsTo('vehicle'),
   records: hasMany('record')
 });

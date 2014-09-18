@@ -1,5 +1,5 @@
 Myapp.ChargePointsController = Ember.ArrayController.extend({
-  needs:['charge-point'],
+  needs:['charge-point', 'connectors'],
   sortProperties: ['name'],
   sortAscending: true,
   isAccepted: true,

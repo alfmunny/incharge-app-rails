@@ -1,5 +1,3 @@
-hasMany = DS.hasMany;
-
 Myapp.ChargePoint = DS.Model.extend({
   name: DS.attr('string'),
   status: DS.attr('string'),
@@ -16,5 +14,6 @@ Myapp.ChargePoint = DS.Model.extend({
 
   users: DS.hasMany('user'),
   vehicles: DS.hasMany('vehicle'),
-  trades: DS.hasMany('trade')
+  trades: DS.hasMany('trade'),
+  connectors: DS.hasMany('connector')
 });

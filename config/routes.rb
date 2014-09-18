@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
 	root :to => 'static#index'
 
   namespace :api do
@@ -18,6 +19,7 @@ Rails.application.routes.draw do
 			end
 			resources :trades
   		resources :records
+      resources :connectors
    end
   end
 

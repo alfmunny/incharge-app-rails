@@ -108,8 +108,43 @@ class Api::V1::ChargePointsController < ApplicationController
   end
 
   def start_transaction
+    id_tag = params[:id_tag]
+    connector_id = params[:connector_id]
+    timestamp = params[:timestamp]
+    meter_start = params[:meter_start]
+    reservation_id = params[:reservation_id]
+    vehicle_id = params[:vehicle_id]
+
     respond_to do |format|
-      format.json { render json: @charge_point }
+      @user = User.find_by(id_tag: id_tag)
+      if @user
+        if @user.expiry_date > Date.today
+          @trade = Trade.create(user_id: @user.id, charge_point_id: @charge_point.id, energy: 0, bill: 0, status: 'Started')
+          if vehicle_id and Vehicle.find(vehicle_id)
+            @trade.update(transaction_id: @trade.id, vehicle_id: vehicle_id)
+          else
+            @trade.update(transaction_id: @trade.id)
+          end
+          result = {
+            "transaction_id" => @trade.transaction_id,
+            "id_tag_info" => { "status" => "Accepted", "expiry_date" => @user.expiry_date, "parent_id_tag" => "" }
+          }
+          #result = { "id_tag" => id_tag }
+          format.json { render json: result }
+        else @user.expiry_date < Date.tody
+          result = {
+            "transaction_id" => "null",
+            "id_tag_info" => { "status" => "Expired", "expiry_date" => @user.expiry_date, "parent_id_tag" => "" }
+          }
+          format.json { render json: result }
+        end
+      else
+        result = {
+          "transaction_id" => "null",
+          "id_tag_info" => { "status" => "Invalid", "expiry_date" => "", "parent_id_tag" => "" }
+        }
+        format.json { render json: result }
+      end
     end
   end
 
