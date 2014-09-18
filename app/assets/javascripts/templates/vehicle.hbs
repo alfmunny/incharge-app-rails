@@ -16,7 +16,7 @@
     <div class="panel-body">
       {{#each trades}}
         <p>
-          {{#link-to 'trade' this}}{{transactionId}}<span class="small"> at {{date createdAt}}</span>{{/link-to}}
+          {{#link-to 'trade' this}}{{id}}<span class="small"> at {{date createdAt}}</span>{{/link-to}}
         </p>
       {{/each}}
     </div>

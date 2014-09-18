@@ -71,8 +71,22 @@ class Api::V1::ChargePointsController < ApplicationController
   end
 
   def authorize
+    id_tag = params[:id_tag]
+
     respond_to do |format|
-      format.json { render json: @charge_point }
+      if id_tag
+        @user = User.find_by(id_tag: id_tag)
+        if @user && @user.expiry_date > Date.today
+          result = {"id_tag_info" => { "status" => "Accepted", "expiry_date" => @user.expiry_date, "parent_id_tag" => "" }}
+        elsif @user && user.expiry_date < Date.today
+          result = {"id_tag_info" => { "status" => "Expired", "expiry_date" => @user.expiry_date, "parent_id_tag" => "" }}
+        else
+          result = {"id_tag_info" => { "status" => "Blocked", "expiry_date" => "", "parent_id_tag" => "" }}
+        end
+      else
+        result = {"id_tag_info" => { "status" => "Invalid", "expiry_date" => "", "parent_id_tag" => "" }}
+      end
+      format.json { render json: result }
     end
   end
 
@@ -85,12 +99,10 @@ class Api::V1::ChargePointsController < ApplicationController
       if charge_point_vendor == @charge_point[:charge_point_vendor]
         @charge_point.update(status: "Accepted")
         result = { "status" => "Accepted", "current_time" => Time.now,  "heartbeart_interval" => @charge_point[:heartbeat_interval]}
-        #format.json { render json: @charge_point, status: :ok}
-        format.json { render json: result, status: :ok}
       else
         result = { "status" => "Rejected", "current_time" => Time.now,  "heartbeart_interval" => @charge_point[:heartbeat_interval]}
-        format.json { render json: result}
       end
+      format.json { render json: result }
     end
   end
 
@@ -104,7 +116,7 @@ class Api::V1::ChargePointsController < ApplicationController
   def meter_values
     # Mandatory Parameters
     connector_id = params[:connector_id]
-    # Optional Parameters
+    # Optional Parameters but self mandatory
     transaction_id = params[:transaction_id]
     values = params[:values]
 
@@ -130,6 +142,8 @@ class Api::V1::ChargePointsController < ApplicationController
     meter_start = params[:meter_start]
     # Optinal Parameters
     reservation_id = params[:reservation_id]
+
+    # Optional Parameters but self Mandatory
     vehicle_id = params[:vehicle_id]
 
     respond_to do |format|

@@ -26,6 +26,7 @@
 
 // for more details see: http://emberjs.com/guides/application/
 Myapp = Ember.Application.create();
+document.title = "InCharge Server"
 //
 // jQuery(document).ready(function() {
 //   setTimeout(function() {
