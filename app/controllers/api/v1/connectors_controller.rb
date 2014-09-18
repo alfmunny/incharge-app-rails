@@ -1,4 +1,4 @@
-class ConnectorsController < ApplicationController
+class Api::V1::ConnectorsController < ApplicationController
   protect_from_forgery
 
   before_action :set_connector, only: [:show, :edit, :update, :destroy]
@@ -17,6 +17,7 @@ class ConnectorsController < ApplicationController
   def show
     respond_to do |format|
       format.json { render json: @connector }
+    end
   end
 
   # GET /connectors/new

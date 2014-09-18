@@ -108,10 +108,12 @@ class Api::V1::ChargePointsController < ApplicationController
   end
 
   def start_transaction
+    # Mandatory Parameters
     id_tag = params[:id_tag]
     connector_id = params[:connector_id]
     timestamp = params[:timestamp]
     meter_start = params[:meter_start]
+    # Optinal Parameters
     reservation_id = params[:reservation_id]
     vehicle_id = params[:vehicle_id]
 
@@ -119,7 +121,7 @@ class Api::V1::ChargePointsController < ApplicationController
       @user = User.find_by(id_tag: id_tag)
       if @user
         if @user.expiry_date > Date.today
-          @trade = Trade.create(user_id: @user.id, charge_point_id: @charge_point.id, energy: 0, bill: 0, status: 'Started')
+          @trade = Trade.create(user_id: @user.id, charge_point_id: @charge_point.id, connector_id: connector_id, energy: 0, bill: 0, status: 'Started')
           if vehicle_id and Vehicle.find(vehicle_id)
             @trade.update(transaction_id: @trade.id, vehicle_id: vehicle_id)
           else
@@ -149,8 +151,26 @@ class Api::V1::ChargePointsController < ApplicationController
   end
 
   def stop_transaction
+    # Mandatory Parameters
+    meter_stop= params[:meter_stop]
+    transaction_id = params[:transaction_id]
+    timestamp = params[:timestamp]
+
+    # Optional Parameters
+    id_tag = params[:id_tag]
+    transaction_data = params[:transaction_data]
+
     respond_to do |format|
-      format.json { render json: @charge_point }
+      if meter_stop && transaction_id && timestamp
+        @trade = Trade.find_by(transaction_id: transaction_id)
+        @user = User.find(@trade.user_id)
+        @trade.update(status: "Finished", meter_stop: meter_stop)
+        result = { "id_tag_info" => { "status" => "Accepted", "expiry_date" => @user.expiry_date, "parent_id_tag" => "" } }
+        format.json { render json: result }
+      else
+        result = { "id_tag_info" => { "status" => "Invalid", "expiry_date" => "", "parent_id_tag" => "" } }
+        format.json { render json: result }
+      end
     end
   end
 

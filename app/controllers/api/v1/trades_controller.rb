@@ -3,7 +3,7 @@ class Api::V1::TradesController < ApplicationController
   protect_from_forgery
 
   before_action :set_trade, only: [:show, :edit, :update, :destroy]
-  respond_to :json, :html
+  respond_to :json
 
   # GET /trades
   # GET /trades.json
@@ -73,6 +73,6 @@ class Api::V1::TradesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def trade_params
-      params.require(:trade).permit(:transaction_id, :status, :energy, :bill)
+      params.require(:trade).permit(:transaction_id, :status, :energy, :bill, :timestamp, :meter_start, :meter_stop)
     end
 end
