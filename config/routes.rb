@@ -12,9 +12,9 @@ Rails.application.routes.draw do
 					get 'authorize'
 					get 'boot_notification'
 					get 'heartbeat'
-					put 'start_transaction'
-					put 'meter_values'
-					put 'stop_transaction'
+					get 'start_transaction'
+					get 'meter_values'
+					get 'stop_transaction'
 				end
 			end
 			resources :trades

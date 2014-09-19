@@ -147,7 +147,7 @@ class Api::V1::ChargePointsController < ApplicationController
     vehicle_id = params[:vehicle_id]
 
     respond_to do |format|
-      if id_tag && connector_id && timestamp && meter_start
+      if id_tag && connector_id && meter_start
         @user = User.find_by(id_tag: id_tag)
         if @user
           if @user.expiry_date > Date.today
