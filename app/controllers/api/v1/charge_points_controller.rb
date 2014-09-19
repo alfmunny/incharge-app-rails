@@ -138,7 +138,7 @@ class Api::V1::ChargePointsController < ApplicationController
     # Mandatory Parameters
     id_tag = params[:id_tag]
     connector_id = params[:connector_id]
-    timestamp = params[:timestamp]
+    #timestamp = params[:timestamp]
     meter_start = params[:meter_start]
     # Optinal Parameters
     reservation_id = params[:reservation_id]
@@ -193,7 +193,7 @@ class Api::V1::ChargePointsController < ApplicationController
     transaction_data = params[:transaction_data]
 
     respond_to do |format|
-      if meter_stop && transaction_id && timestamp
+      if meter_stop && transaction_id
         @trade = Trade.find(transaction_id)
         @user = User.find(@trade.user_id)
         @trade.update(status: "Finished", meter_stop: meter_stop)
