@@ -186,7 +186,7 @@ class Api::V1::ChargePointsController < ApplicationController
     # Mandatory Parameters
     meter_stop= params[:meter_stop]
     transaction_id = params[:transaction_id]
-    timestamp = params[:timestamp]
+    #timestamp = params[:timestamp]
 
     # Optional Parameters
     id_tag = params[:id_tag]
