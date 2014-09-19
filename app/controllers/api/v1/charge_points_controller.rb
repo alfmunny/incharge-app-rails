@@ -102,7 +102,7 @@ class Api::V1::ChargePointsController < ApplicationController
       else
         result = { "status" => "Rejected", "current_time" => Time.now,  "heartbeart_interval" => @charge_point[:heartbeat_interval]}
       end
-      format.json { render json: result }
+      format.json { render :json => result, :callback => params[:callback]}
     end
   end
 
