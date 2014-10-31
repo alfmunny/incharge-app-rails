@@ -2,20 +2,22 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">PROFILE</h4>
+      {{#if 'isEditing'}}
+      <button class="btn btn-primary btn-sm"{{action 'doneEditing'}}>Done</button>
+      <button class="btn btn-primary btn-sm"{{action 'cancel'}}>Cancel</button>
+      {{else}}
+      <button class="btn btn-primary btn-sm"{{action 'edit'}}>Edit</button>
+      {{/if}}
     </div>
-    <div class="panel-body">
-      <div class="col-md-9">
-      <p><strong>{{name}}</strong> </p>
-      <hr>
-      <p><span class="glyphicon glyphicon-envelope"></span> {{email}} </p>
-      <p> <span class="glyphicon glyphicon-map-marker"></span> {{company}} </p>
-      <p><span class="glyphicon glyphicon-bell"></span> {{date expiryDate}} </p>
-      <p><span class="glyphicon glyphicon-user"></span> {{idTag}} </p>
+      <div class="panel-body">
+        <div class="col-md-9">
+      {{#if 'isEditing'}}
+        {{partial 'user/edit'}}
+      {{else}}
+        {{partial 'user/view'}}
+      {{/if}}
+        </div>
       </div>
-      <div class="col-md-3">
-          <img src="https://avatars2.githubusercontent.com/u/2964880?v=2&s=460" alt="" />
-      </div>
-    </div>
     </table>
   </div>
 
@@ -34,7 +36,7 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h4 class="panel-title">CHARGE POINT</h4>
+      <h4 class="panel-title">CHARGE POINTS</h4>
     </div>
     <div class="panel-body">
       {{#each chargePoints}}
@@ -47,7 +49,7 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h4 class="panel-title">TRADES</h4>
+      <h4 class="panel-title">TRANSACTIONS</h4>
     </div>
     <div class="panel-body">
       {{#each trades}}

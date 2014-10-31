@@ -21,6 +21,10 @@ Myapp.Router.map(function() {
   this.resource('trade', { path: '/trades/:trade_id' });
 
   this.resource('records');
+  this.resource('simulator');
 
   this.resource('about');
+});
+
+Myapp.Router.reopen({
 });

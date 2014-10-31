@@ -1,0 +1,19 @@
+<h2>Simulator</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6">
+      <div class="btn-group-vertical">
+        <button class="btn btn-default btn-lg" {{action 'boot_notification'}}>Boot Notification</button>
+        <button class="btn btn-default btn-lg" {{action 'authorize'}}>Authorize</button>
+        <button class="btn btn-default btn-lg" {{action 'start_transaction'}}>Start Transaction</button>
+        <button class="btn btn-default btn-lg" {{action 'meter_values'}}>Meter Values</button>
+        <button class="btn btn-default btn-lg" {{action 'stop_transaction'}}>Stop Transaction</button>
+      </div>
+    </div>
+    <div class="col-xs-6" >
+      <strong>Response</strong>
+      <textarea id="simulator-screen" rows="9" cols="30">
+      </textarea>
+    </div>
+  </div>
+</div>

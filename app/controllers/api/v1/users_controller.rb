@@ -20,8 +20,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def update
-    @user = User.update(params[:id], user_params)
-    respond_with @user
+    respond_with User.update(params[:id], user_params)
   end
 
   def destroy
@@ -31,7 +30,7 @@ class Api::V1::UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :company, :expiry_date, :password)
+    params.require(:user).permit(:name, :email, :company, :expiry_date, :password, :id_tag)
   end
 
 end

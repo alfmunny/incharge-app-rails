@@ -53,6 +53,23 @@
     </div>
   </div>
 
+  <div class="users panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">
+        <h5>USERS</h5>
+      </div>
+    </div>
+    <div class="panel-body">
+      <ul class="list-group">
+        {{#each users}}
+          {{#link-to 'user' this}}
+            <p>{{this.name}}</p>
+          {{/link-to}}
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+
   <div class="connectors panel panel-default">
     <div class="panel-heading">
       <div class="panel-title">
@@ -85,27 +102,11 @@
     </div>
   </div>
 
-  <div class="users panel panel-default">
-    <div class="panel-heading">
-      <div class="panel-title">
-        <h5>USERS</h5>
-      </div>
-    </div>
-    <div class="panel-body">
-      <ul class="list-group">
-        {{#each users}}
-          {{#link-to 'user' this}}
-            <p>{{this.name}}</p>
-          {{/link-to}}
-        {{/each}}
-      </ul>
-    </div>
-  </div>
 
   <div class="users panel panel-default">
     <div class="panel-heading">
       <div class="panel-title">
-        <h5>TRADES</h5>
+        <h5>TRANSACTIONS</h5>
       </div>
     </div>
     <div class="panel-body">

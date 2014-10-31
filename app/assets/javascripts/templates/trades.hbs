@@ -4,7 +4,7 @@
     </div>
 
     <div class="col-md-8">
-      <h2 style="bold">Trades</h2>
+      <h2 style="bold">Transactions</h2>
       <ul class="list-group">
         {{#each}}
         <p>
@@ -13,7 +13,7 @@
         </p>
         <p>
           {{#link-to 'user' this.user}}{{user.name}}{{/link-to}}
-          has <kbd class="text-lowercase">{{status}}</kbd> trade {{#link-to 'trade' this}}{{id}}{{/link-to}}
+          has <kbd class="text-lowercase">{{status}}</kbd> transaction {{#link-to 'trade' this}}{{id}}{{/link-to}}
           by charging vehicle {{#link-to 'vehicle' this.vehicle}}{{vehicle.name}}{{/link-to}}
         </p>
         <hr>

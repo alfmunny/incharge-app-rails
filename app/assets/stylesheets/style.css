@@ -29,3 +29,10 @@ ember.text-field, .ember-text-area {
 img {
 	max-width: 100%;
 }
+
+div .screen {
+  border: 10px solid;
+  border-radius: 25px;
+  height: 250px;
+  border-color: black;
+}

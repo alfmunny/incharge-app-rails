@@ -25,7 +25,7 @@ Myapp.TradeView = Ember.View.extend({
           },
           yAxis: [{
               title: {
-                  text: 'Power'
+                  text: ''
               },
               plotLines: [{
                   value: 0,
