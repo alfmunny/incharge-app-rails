@@ -1,0 +1,11 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span6">
+      <strong>Name of Charge Point:</strong> {{input valueBinding='name' cols="30"}}
+      <hr>
+      {{partial 'charge-point/edit'}}
+      <button class="btn btn-success btn-sm" {{action 'create'}}>Create</button>
+      <button class="btn btn-primary btn-sm" {{action 'cancel'}}>Cancel</button>
+    </div>
+  </div>
+</div>

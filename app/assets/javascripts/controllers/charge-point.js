@@ -21,7 +21,18 @@ Myapp.ChargePointController = Ember.ObjectController.extend({
   },
 
   isEditing: false,
+  nameIsEditing: false,
   actions: {
+    editName: function () {
+      this.set('nameIsEditing', true);
+    },
+    doneNameEditing: function () {
+      this.set('nameIsEditing', false);
+      this.get('model').save();
+    },
+    cancelNameEditing: function () {
+      this.set('nameIsEditing', false);
+    },
     edit: function() {
       this.set('isEditing', true);
     },

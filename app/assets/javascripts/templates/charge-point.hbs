@@ -1,6 +1,15 @@
 <div class="container-fluid">
   <div class="charge-point-status">
-    <h3>{{name}}</h3>
+    {{#if 'nameIsEditing'}}
+      <h3>{{input valueBinding='name' cols="30"}}</h3>
+      <button class="btn btn-success btn-sm "{{action 'doneNameEditing'}}>Done</button>
+      <button class="btn btn-primary btn-sm "{{action 'cancelNameEditing'}}>Cancel</button>
+    {{else}}
+      <h3>
+        {{name}}
+        <button class="btn btn-primary btn-sm "{{action 'editName'}}>Edit Name</button>
+      </h3>
+    {{/if}}
     <hr>
     <strong>Status</strong>:
     {{#if 'isAccepted'}}
@@ -22,10 +31,7 @@
       <h5 class="panel-title">
         <a data-toggle="collapse" href="#cp-configuration">
           CONFIGURATION
-          {{#if 'isEditing'}}
-          {{else}}
-          {{/if}}
-          </h4>
+        </h5>
         </a>
       </h5>
     </div>
