@@ -12,10 +12,10 @@ Myapp.UserController = Ember.ObjectController.extend({
       this.get('model').save();
     },
     destroy: function() {
-      if (window.confirm("Are you sure to delete this post?")) {
+      if (window.confirm("All the records of the user will be deleted and can't be restored? \nAre you sure to delete this user? ")) {
         this.get('model').deleteRecord();
         this.get('model').save();
-        this.transitionToRoute('posts');
+        this.transitionToRoute('users');
       }
     }
   }

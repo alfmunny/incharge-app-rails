@@ -1,0 +1,31 @@
+<div class="container">
+
+  <form class="form-signin" role="form">
+    <h2 class="form-signin-heading">Please sign up</h2>
+      <div class='alert alert-danger'>
+          <h4>There was a problem</h4>
+          <p>The user could not be saved due to validation errors</p>
+      </div>
+    {{#each errors.messages}}
+    <div class="error">
+      {{message}}
+    </div>
+    {{/each}}
+
+    {{input valueBinding='email'}}
+    {{input valueBinding='name'}}
+    {{input valueBinding='password'}}
+    <!-- <input type="email" class="form-control" placeholder="Email address" required autofocus>
+    <input type="first name" class="form-control" placeholder="First name" required autofocus>
+    <input type="last name" class="form-control" placeholder="Last name" required autofocus>
+    <input type="password" class="form-control" placeholder="Password" required>
+    <input type="password" class="form-control" placeholder="Confirm Password" required> -->
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" {{action 'signUp'}}>Sign up</button>
+  </form>
+
+</div>

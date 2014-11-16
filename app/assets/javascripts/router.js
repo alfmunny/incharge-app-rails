@@ -7,14 +7,17 @@ Myapp.Router.map(function() {
 
   this.resource('users', function() {
     this.resource('user', { path: ':user_id' });
+    this.route('new');
   });
 
   this.resource('vehicles', function() {
     this.resource('vehicle', { path: ':vehicle_id'});
+    this.route('new');
   });
 
   this.resource('charge-points', function () {
     this.resource('charge-point', { path: ':charge_point_id' });
+    this.route('new');
   });
 
   this.resource('trades');
@@ -22,6 +25,10 @@ Myapp.Router.map(function() {
 
   this.resource('records');
   this.resource('simulator');
+
+  this.route('sign-in');
+  this.route('sign-up');
+  this.route('sign-out');
 
   this.resource('about');
 });

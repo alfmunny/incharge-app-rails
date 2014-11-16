@@ -12,10 +12,10 @@ Myapp.VehicleController = Ember.ObjectController.extend({
       this.get('model').save();
     },
     destroy: function() {
-      if (window.confirm("Are you sure to delete this post?")) {
+      if (window.confirm("Are you sure to delete this vehicle?")) {
         this.get('model').deleteRecord();
         this.get('model').save();
-        this.transitionToRoute('posts');
+        this.transitionToRoute('vehicles');
       }
     }
   }

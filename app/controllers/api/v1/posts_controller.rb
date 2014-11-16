@@ -2,7 +2,7 @@ class Api::V1::PostsController < ApplicationController
 	respond_to :json, :xml
 
  	include ActionController::Live
-	
+
 	def index
 		respond_with Post.all
 	end

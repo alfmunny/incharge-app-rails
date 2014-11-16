@@ -82,4 +82,6 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
 	config.ember.variant = :production
+  config.action_mailer.default_url_options = { host: 'https://incharge-tum.herokuapp.com/'}
+
 end

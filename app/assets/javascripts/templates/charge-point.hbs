@@ -22,33 +22,25 @@
       <h5 class="panel-title">
         <a data-toggle="collapse" href="#cp-configuration">
           CONFIGURATION
+          {{#if 'isEditing'}}
+          {{else}}
+          {{/if}}
+          </h4>
         </a>
       </h5>
     </div>
     <div id="cp-configuration" class="collapse in">
       <div class="panel-body">
-        <dl class="dl-horizontal">
-          <dt>Charge Point Vender</dt>
-          <dd>{{chargePointVendor}}</dd>
-          <dt>Charge Point Model</dt>
-          <dd>{{chargePointModel}}</dd>
-          <dt>Firmware Version</dt>
-          <dd>{{firmwareVersion}}</dd>
-          <dt>Charge Point Serial Nr.</dt>
-          <dd>{{chargePointSerialNumber}}</dd>
-          <dt>ICCID</dt>
-          <dd>{{iccid}}</dd>
-          <dt>IMSI</dt>
-          <dd>{{imsi}}</dd>
-          <dt>Meter Type</dt>
-          <dd>{{meterType}}</dd>
-          <dt>Meter Serial Nr.</dt>
-          <dd>{{meterSerialNumber}}</dd>
-          <dt> Heartbeat Interval</dt>
-          <dd>{{heartbeatInterval}}</dd>
-          <dt>Charge Box Serial Nr.</dt>
-          <dd>{{chargeBoxSerialNumber}}</dd>
-        </dl>
+        {{#if 'isEditing'}}
+          {{partial 'charge-point/edit'}}
+          <hr>
+          <button class="btn btn-success btn-sm "{{action 'doneEditing'}}>Done</button>
+          <button class="btn btn-primary btn-sm "{{action 'cancel'}}>Cancel</button>
+        {{else}}
+          {{partial 'charge-point/view'}}
+          <hr>
+          <button class="btn btn-primary btn-sm "{{action 'edit'}}>Edit</button>
+        {{/if}}
       </div>
     </div>
   </div>
@@ -106,18 +98,23 @@
   <div class="users panel panel-default">
     <div class="panel-heading">
       <div class="panel-title">
-        <h5>TRANSACTIONS</h5>
+        <a data-toggle="collapse" href="#transaction-list">
+          <h5>TRANSACTIONS</h5>
+        </a>
       </div>
     </div>
-    <div class="panel-body">
-      <ul class="list-group">
-        {{#each trades}}
-          {{#link-to 'trade' this}}
-            <p>{{this.id}} <span class="small">at {{date this.createdAt}}</span></p>
-          {{/link-to}}
-        {{/each}}
-      </ul>
+    <div id="transaction-list" class="collapse in">
+      <div class="panel-body">
+        <ul class="list-group">
+          {{#each trades}}
+            {{#link-to 'trade' this}}
+              <p>{{this.id}} <span class="small">at {{date this.createdAt}}</span></p>
+            {{/link-to}}
+          {{/each}}
+        </ul>
+      </div>
     </div>
   </div>
 
+  <button class="btn btn-danger btn-sm"{{action 'destroy'}}>Delete Charge Point</button>
 </div>

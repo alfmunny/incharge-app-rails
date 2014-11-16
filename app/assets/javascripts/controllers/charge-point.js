@@ -18,5 +18,26 @@ Myapp.ChargePointController = Ember.ObjectController.extend({
       this.get('model').save();
       this.transitionToRoute('charge-point');
     }
+  },
+
+  isEditing: false,
+  actions: {
+    edit: function() {
+      this.set('isEditing', true);
+    },
+    cancel: function() {
+      this.set('isEditing', false);
+    },
+    doneEditing: function() {
+      this.set('isEditing', false);
+      this.get('model').save();
+    },
+    destroy: function() {
+      if (window.confirm("Are you sure to delete this charge point?")) {
+        this.get('model').deleteRecord();
+        this.get('model').save();
+        this.transitionToRoute('charge-points');
+      }
+    }
   }
 });

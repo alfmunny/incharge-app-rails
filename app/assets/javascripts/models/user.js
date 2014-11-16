@@ -6,6 +6,7 @@ Myapp.User = DS.Model.extend({
   expiryDate: attr('date'),
   email: attr('string'),
   company: attr('string'),
+  password: attr('string'),
   //avatar: attr('string')
 
   vehicles: hasMany('vehicle'),

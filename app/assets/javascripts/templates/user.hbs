@@ -1,13 +1,14 @@
 <div class="container-fluid">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h4 class="panel-title">PROFILE</h4>
+      <h5 class="panel-title">PROFILE
       {{#if 'isEditing'}}
-      <button class="btn btn-primary btn-sm"{{action 'doneEditing'}}>Done</button>
+      <button class="btn btn-success btn-sm"{{action 'doneEditing'}}>Done</button>
       <button class="btn btn-primary btn-sm"{{action 'cancel'}}>Cancel</button>
       {{else}}
       <button class="btn btn-primary btn-sm"{{action 'edit'}}>Edit</button>
       {{/if}}
+      </h5>
     </div>
       <div class="panel-body">
         <div class="col-md-9">
@@ -23,7 +24,7 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h4 class="panel-title">VEHICLES</h4>
+      <h5 class="panel-title">VEHICLES</h5>
     </div>
     <div class="panel-body">
       {{#each vehicles}}
@@ -36,7 +37,7 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h4 class="panel-title">CHARGE POINTS</h4>
+      <h5 class="panel-title">CHARGE POINTS</h5>
     </div>
     <div class="panel-body">
       {{#each chargePoints}}
@@ -49,17 +50,24 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h4 class="panel-title">TRANSACTIONS</h4>
+      <div class="panel-title">
+        <a data-toggle="collapse" href="#transaction-list">
+          <h5 class="panel-title">TRANSACTIONS</h5>
+        </a>
+      </div>
     </div>
-    <div class="panel-body">
-      {{#each trades}}
-        <p>
-          {{#link-to 'trade' this }}{{id}}
-          <span class="small"> at {{date createdAt}}, </span>{{/link-to}}
-          <span>{{bill}} €, </span>
-          <span>{{energy}} kWh</span>
-        </p>
-      {{/each}}
+    <div id="transaction-list" class="collapse in">
+      <div class="panel-body">
+        {{#each trades}}
+          <p>
+            {{#link-to 'trade' this }}{{id}}
+            <span class="small"> at {{date createdAt}}, </span>{{/link-to}}
+            <span>{{bill}} €, </span>
+            <span>{{energy}} kWh</span>
+          </p>
+        {{/each}}
+      </div>
     </div>
   </div>
+  <button class="btn btn-danger btn-sm"{{action 'destroy'}}>Delete User</button>
 </div>

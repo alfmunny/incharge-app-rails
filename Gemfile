@@ -17,6 +17,7 @@ gem 'highcharts-rails'
 gem 'websocket-rails'
 gem 'puma'
 gem 'paperclip', '~> 4.2'
+gem 'devise'
 
 group :development, :test do
   gem 'rspec-rails'
