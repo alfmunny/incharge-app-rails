@@ -13,13 +13,6 @@ class Api::V1::UsersController < ApplicationController
     respond_with @user
   end
 
-  def generate_idtag
-    letters = [('A'...'Z')].map { |i| i.to_a }.flatten
-    numbers = [('1'...'10')].map { |i| i.to_a }.flatten
-    string = (0...2).map {letters[rand(letters.length)]}.join + (0...8).map {numbers[rand(numbers.length)]}.join
-    return string
-  end
-
   def create
     @user = User.create(user_params)
     @user.save
@@ -45,7 +38,8 @@ class Api::V1::UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :company, :expiry_date, :password, :id_tag)
+    #params.require(:user).permit(:name, :email, :company, :expiry_date, :password, :id_tag, {:vehicle_ids => []})
+    params.require(:user).permit!
   end
 
 end

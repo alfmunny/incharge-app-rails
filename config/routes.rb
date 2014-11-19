@@ -15,6 +15,21 @@ Rails.application.routes.draw do
 					get 'start_transaction'
 					get 'meter_values'
 					get 'stop_transaction'
+          get 'status_notification'
+          get 'firmware_status_notification'
+          get 'diagnostics_status_notification'
+          get 'data_transfer'
+
+          get 'Authorize'
+					get 'BootNotification'
+          get 'Heartbeat'
+          get 'StartTransaction'
+          get 'MeterValues'
+          get 'StopTransaction'
+          get 'StatusNotification'
+          get 'FirmwareStatusNotification'
+          get 'DiagnosticsStatusNotification'
+          get 'DataTransfer'
 				end
 			end
 			resources :trades

@@ -76,6 +76,7 @@ class Api::V1::VehiclesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def vehicle_params
-      params.require(:vehicle).permit(:vehicle_type, :name, :avatar)
+      #params.require(:vehicle).permit(:vehicle_type, :name, :avatar, {:user_ids => []})
+      params.require(:vehicle).permit!
     end
 end

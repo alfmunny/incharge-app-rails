@@ -16,6 +16,19 @@ Myapp.SimulatorController = Ember.ObjectController.extend({
       });
     },
 
+    heartbeat: function () {
+      $.ajax({
+          type: "GET",
+          data: {},
+          url: "http://localhost:3000/api/v1/charge_points/1/heartbeat",
+          contentType: "appliaction/json",
+          dataType: "json",
+          success: function(data) {
+            $('#simulator-screen').val(JSON.stringify(data, undefined, 2));
+          }
+      });
+    },
+
     authorize: function() {
       $.ajax({
           type: "GET",

@@ -23,6 +23,11 @@ Myapp.Router.map(function() {
   this.resource('trades');
   this.resource('trade', { path: '/trades/:trade_id' });
 
+  this.resource('connectors', function () {
+    this.resource('connector', { path: ':connector_id'});
+    this.route('new');
+  });
+
   this.resource('records');
   this.resource('simulator');
 

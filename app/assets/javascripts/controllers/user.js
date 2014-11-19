@@ -1,5 +1,7 @@
 Myapp.UserController = Ember.ObjectController.extend({
   isEditing: false,
+  vehicleAdding: false,
+  // newVehicleName: "",
   actions: {
     edit: function() {
       this.set('isEditing', true);
@@ -17,6 +19,23 @@ Myapp.UserController = Ember.ObjectController.extend({
         this.get('model').save();
         this.transitionToRoute('users');
       }
+    },
+    addVehicle: function () {
+      this.set('vehicleAdding', true);
+    },
+    doneVehicleAdding: function () {
+      vehicleId = this.get('newVehicleId');
+      this.set('vehicleAdding', false);
+      var user = this.get('model');
+      this.store.find('vehicle', vehicleId).then(function(vehicle) {
+        user.get('vehicles').pushObject(vehicle);
+        vehicle.get('users').pushObject(user);
+        user.save();
+        vehicle.save();
+      });
+    },
+    cancelVehicleAdding: function () {
+      this.set('vehicleAdding', false);
     }
   }
 });

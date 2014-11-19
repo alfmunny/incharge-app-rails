@@ -24,9 +24,19 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h5 class="panel-title">VEHICLES</h5>
+      <h5 class="panel-title">
+        VEHICLES
+        <!-- <button class="btn btn-primary btn-sm" {{action 'addVehicle'}}>Add Vehicle</button> -->
+      </h5>
     </div>
     <div class="panel-body">
+      {{#if 'vehicleAdding'}}
+      <p>
+        please enter the name of a existing vehicle: {{input valueBinding='newVehicleId' cols="30" }}
+        <button class="btn btn-success btn-sm"{{action 'doneVehicleAdding'}}>Done</button>
+        <button class="btn btn-primary btn-sm"{{action 'cancelVehicleAdding'}}>cancel</button>
+      </p>
+      {{/if}}
       {{#each vehicles}}
         <p>
           {{#link-to 'vehicle' this }}{{name}}{{/link-to}}

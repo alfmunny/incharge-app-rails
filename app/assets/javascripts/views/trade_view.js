@@ -25,13 +25,31 @@ Myapp.TradeView = Ember.View.extend({
           },
           yAxis: [{
               title: {
-                  text: ''
+                  text: 'Current',
+                  style: {
+                      color: Highcharts.getOptions().colors[1]
+                  }
               },
-              plotLines: [{
-                  value: 0,
-                  width: 1,
-                  color: '#808080'
-              }]
+              labels: {
+                  format: '{value} KW',
+                  style: {
+                      color: Highcharts.getOptions().colors[1]
+                  }
+              }
+          }, {
+              title: {
+                  text: 'Power',
+                  style: {
+                      color: Highcharts.getOptions().colors[0]
+                  }
+              },
+              labels: {
+                   format: '{value} A',
+                   style: {
+                       color: Highcharts.getOptions().colors[0] 
+                   }
+              },
+              opposite: true
           }],
 
           tooltip: {
@@ -46,6 +64,7 @@ Myapp.TradeView = Ember.View.extend({
           series: [{
               name: 'Power',
               data: power,
+              yAxis: 1,
               tooltip: {
                 valueSuffix: ' kW'
               }
