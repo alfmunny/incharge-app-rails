@@ -31,7 +31,7 @@ Myapp.TradeView = Ember.View.extend({
                   }
               },
               labels: {
-                  format: '{value} KW',
+                  format: '{value} A',
                   style: {
                       color: Highcharts.getOptions().colors[1]
                   }
@@ -44,9 +44,9 @@ Myapp.TradeView = Ember.View.extend({
                   }
               },
               labels: {
-                   format: '{value} A',
+                   format: '{value} KW',
                    style: {
-                       color: Highcharts.getOptions().colors[0] 
+                       color: Highcharts.getOptions().colors[0]
                    }
               },
               opposite: true
