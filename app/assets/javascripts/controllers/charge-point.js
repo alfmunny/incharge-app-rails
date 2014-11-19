@@ -10,16 +10,6 @@ Myapp.ChargePointController = Ember.ObjectController.extend({
     }
   }.property('model'),
 
-  actions: {
-    reset: function () {
-      chargePoint = this.get('model');
-      chargePoint.set('status', 'Not Available');
-      this.set('isAccepted', false);
-      this.get('model').save();
-      this.transitionToRoute('charge-point');
-    }
-  },
-
   isEditing: false,
   nameIsEditing: false,
   actions: {
@@ -49,6 +39,13 @@ Myapp.ChargePointController = Ember.ObjectController.extend({
         this.get('model').save();
         this.transitionToRoute('charge-points');
       }
+    },
+    reset: function () {
+      chargePoint = this.get('model');
+      chargePoint.set('status', 'Not Available');
+      this.set('isAccepted', false);
+      this.get('model').save();
+      this.transitionToRoute('charge-point');
     }
   }
 });
