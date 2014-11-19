@@ -54,6 +54,13 @@ Myapp.TradeController = Ember.ObjectController.extend({
       var c = model.get('current_array');
       var p = model.get('power_array');
       console.log(this.voltage_array);
+    },
+    destroy: function () {
+      if (window.confirm("All the records of the user will be deleted and can't be restored? \nAre you sure to delete this transaction? ")) {
+        this.get('model').deleteRecord();
+        this.get('model').save();
+        this.transitionToRoute('trades');
+      }
     }
   }
 });

@@ -1,2 +1,5 @@
 <p>ID of Connector: <strong>{{id}}</strong> </p>
 <p>Name of Connector: {{name}}</p>
+<p>
+  Belongs to: {{#link-to 'charge-point' this.chargePoint}}{{chargePoint.name}}{{/link-to}}
+</p>

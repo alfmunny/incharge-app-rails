@@ -77,7 +77,7 @@
     <div class="panel-body">
       <ul class="list-group">
         {{#each connectors}}
-          <p>{{this.name}}</p>
+          <p>{{#link-to 'connector' this}}{{this.name}}{{/link-to}}</p>
         {{/each}}
       </ul>
     </div>
