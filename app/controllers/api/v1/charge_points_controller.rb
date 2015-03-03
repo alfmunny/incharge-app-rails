@@ -116,6 +116,7 @@ class Api::V1::ChargePointsController < ApplicationController
     charge_point_model = params[:charge_point_model]
     charge_point_serial_number = params[:charge_point_serial_number]
     charge_box_serial_number = params[:charge_box_serial_number]
+
     respond_to do |format|
       if charge_point_vendor == @charge_point[:charge_point_vendor]
         @charge_point.update(status: "Accepted")
@@ -132,8 +133,23 @@ class Api::V1::ChargePointsController < ApplicationController
     charge_point_model = params[:charge_point_model]
     charge_point_serial_number = params[:charge_point_serial_number]
     charge_box_serial_number = params[:charge_box_serial_number]
+    firmware_version = params[:firmware_version]
+    iccid = params[:iccid]
+    imsi = params[:imsi]
+    meter_type = params[:meter_type]
+    meter_serial_number = params[:meter_serial_number]
+
     respond_to do |format|
-      if charge_point_vendor == @charge_point[:charge_point_vendor]
+      if charge_point_vendor == @charge_point[:charge_point_vendor] &&
+        charge_point_model == @charge_point[:charge_point_model] &&
+        charge_point_serial_number == @charge_point[:charge_box_serial_number] &&
+        charge_box_serial_number == @charge_point[:charge_box_serial_number] &&
+        firmware_version == @charge_point[:firmware_version] &&
+        iccid == @charge_point[:iccid] &&
+        imsi == @charge_point[:imsi] &&
+        meter_type == @charge_point[:meter_type] &&
+        meter_serial_number == @charge_point[:meter_serial_number]
+
         @charge_point.update(status: "Accepted")
         result = { "status" => "Accepted", "current_time" => Time.now,  "heartbeart_interval" => @charge_point[:heartbeat_interval]}
       else
@@ -163,6 +179,16 @@ class Api::V1::ChargePointsController < ApplicationController
     # Optional Parameters but self mandatory
     transaction_id = params[:transaction_id]
     values = params[:values]
+    current = values[:current]
+    power = values[:power]
+
+    if current.include? ","
+      current[','] = '.'
+    end
+
+    if power.include? ","
+      power[','] = '.'
+    end
 
     respond_to do |format|
       if connector_id && transaction_id && values
@@ -184,6 +210,16 @@ class Api::V1::ChargePointsController < ApplicationController
     # Optional Parameters but self mandatory
     transaction_id = params[:transaction_id]
     values = params[:values]
+    current = values[:current]
+    power = values[:power]
+
+    if current.include? ","
+      current[','] = '.'
+    end
+
+    if power.include? ","
+      power[','] = '.'
+    end
 
     respond_to do |format|
       if connector_id && transaction_id && values
@@ -209,7 +245,9 @@ class Api::V1::ChargePointsController < ApplicationController
     reservation_id = params[:reservation_id]
 
     # Optional Parameters but self Mandatory
-    vehicle_id = params[:vehicle_id]
+    # vehicle_id = params[:vehicle_id]
+    vehicle_name = params[:vehicle_name]
+    vehicle_id = Vehicle.find_by name: vehicle_name
 
     respond_to do |format|
       if id_tag && connector_id && meter_start
@@ -220,6 +258,8 @@ class Api::V1::ChargePointsController < ApplicationController
             connector_id: connector_id, energy: 0, bill: 0, status: 'Started', meter_start: meter_start)
             if vehicle_id and Vehicle.find(vehicle_id)
               @trade.update(vehicle_id: vehicle_id)
+            else
+              result = {"error" => "no vehicle found"}
             end
             result = {
               "transaction_id" => @trade.id,
@@ -258,7 +298,9 @@ class Api::V1::ChargePointsController < ApplicationController
     reservation_id = params[:reservation_id]
 
     # Optional Parameters but self Mandatory
-    vehicle_id = params[:vehicle_id]
+    #vehicle_id = params[:vehicle_id]
+    vehicle_name = params[:vehicle_name]
+    vehicle_id = Vehicle.find_by name: vehicle_name
 
     respond_to do |format|
       if id_tag && connector_id && meter_start
@@ -269,6 +311,8 @@ class Api::V1::ChargePointsController < ApplicationController
             connector_id: connector_id, energy: 0, bill: 0, status: 'Started', meter_start: meter_start)
             if vehicle_id and Vehicle.find(vehicle_id)
               @trade.update(vehicle_id: vehicle_id)
+            else
+              result = {"error" => "no vehicle found"}
             end
             result = {
               "transaction_id" => @trade.id,
@@ -306,6 +350,16 @@ class Api::V1::ChargePointsController < ApplicationController
     # Optional Parameters
     id_tag = params[:id_tag]
     transaction_data = params[:transaction_data]
+    bill = transaction_data[:bill]
+    energy = transaction_data[:energy]
+
+    if bill.include? ","
+      bill[','] = '.'
+    end
+
+    if energy.include? ","
+      energy[','] = '.'
+    end
 
     respond_to do |format|
       if meter_stop && transaction_id && transaction_data
@@ -331,6 +385,16 @@ class Api::V1::ChargePointsController < ApplicationController
     # Optional Parameters
     id_tag = params[:id_tag]
     transaction_data = params[:transaction_data]
+    bill = transaction_data[:bill]
+    energy = transaction_data[:energy]
+
+    if bill.include? ","
+      bill[','] = '.'
+    end
+
+    if energy.include? ","
+      energy[','] = '.'
+    end
 
     respond_to do |format|
       if meter_stop && transaction_id && transaction_data
