@@ -12,7 +12,40 @@ Myapp.ChargePointController = Ember.ObjectController.extend({
 
   isEditing: false,
   nameIsEditing: false,
+  isAddingNewUser: false,
+  isAddingNewConnector: false,
+  isAddingNewVehicle: false,
+
   actions: {
+    addNewUser: function() {
+      this.set('isAddingNewUser', true);
+    },
+    doneUserAdding: function() {
+      this.set('isAddingNewUser', false);
+    },
+    cancelUserAdding: function() {
+      this.set('isAddingNewUser', false);
+    },
+
+    addNewConnector: function() {
+      this.set('isAddingNewConnector', true);
+    },
+    doneConnectorAdding: function() {
+      this.set('isAddingNewConnector', false);
+    },
+    cancelConnectorAdding: function() {
+      this.set('isAddingNewConnector', false);
+    },
+
+    addNewVehicle: function() {
+      this.set('isAddingNewVehicle', true);
+    },
+    doneVehicleAdding: function() {
+      this.set('isAddingNewVehicle', false);
+    },
+    cancelVehicleAdding: function() {
+      this.set('isAddingNewVehicle', false);
+    },
     editName: function () {
       this.set('nameIsEditing', true);
     },
@@ -52,11 +85,67 @@ Myapp.ChargePointController = Ember.ObjectController.extend({
       var newUser = this.get('newUser');
       var allUser = this.get('all-users');
       var user = allUser.findBy('name', newUser);
-      chargePoint.get('users').pushObject(allUser.findBy('name', newUser));
+      chargePoint.get('users').pushObject(user);
       user.save();
       chargePoint.save();
-      console.log(allUser.findBy('name',newUser));
+      this.set('isAddingNewUser', false);
+    },
+    deleteUser: function() {
+      var allUser = this.get('all-users');
+      var chargePoint = this.get('model');
+      $("button").click(function() {
+        var userName = $(this).siblings().text();
+        // var userName = String(userNameString.match(/[^, ].*[^, ]/g));
+        var user = allUser.findBy('name', userName);
+        chargePoint.get('users').removeObject(user);
+        chargePoint.save();
+      });
+    },
 
+    updateConnectors: function() {
+      var chargePoint = this.get('model');
+      var newConnector = this.get('newConnector');
+      var allConnectors = this.get('all-connectors');
+      var connector = allConnectors.findBy('name', newConnector);
+      chargePoint.get('connectors').pushObject(connector);
+      connector.save();
+      chargePoint.save();
+      this.set('isAddingNewConnector', false);
+    },
+
+    deleteConnector: function() {
+      var allConnectors = this.get('all-connectors');
+      var chargePoint = this.get('model');
+      $("button").click(function() {
+        var connectorName = $(this).siblings().text();
+        // var userName = String(userNameString.match(/[^, ].*[^, ]/g));
+        var connector = allConnectors.findBy('name', connectorName);
+        chargePoint.get('connectors').removeObject(connector);
+        chargePoint.save();
+      });
+    },
+
+    updateVehicles: function() {
+      var chargePoint = this.get('model');
+      var newVehicle = this.get('newVehicle');
+      var allVehicles = this.get('all-vehicles');
+      var vehicle = allVehicles.findBy('name', newVehicle);
+      chargePoint.get('vehicles').pushObject(vehicle);
+      vehicle.save();
+      chargePoint.save();
+      this.set('isAddingNewVehicle', false);
+    },
+
+    deleteVehicle: function() {
+      var allVehicles = this.get('all-vehicles');
+      var chargePoint = this.get('model');
+      $("button").click(function() {
+        var vehicleName = $(this).siblings().text();
+        // var userName = String(userNameString.match(/[^, ].*[^, ]/g));
+        var vehicle = allVehicles.findBy('name', vehicleName);
+        chargePoint.get('vehicles').removeObject(vehicle);
+        chargePoint.save();
+      });
     }
   }
 });

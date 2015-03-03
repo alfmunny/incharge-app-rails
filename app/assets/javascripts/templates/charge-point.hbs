@@ -56,22 +56,20 @@
       <h5 class="panel-title">
         USERS
         <div class="btn-group pull-right">
-          {{input value=newUser action="updateUsers" on="enter"}}
-          <button class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false">+</button>
-          <ul class="dropdown-menu" role="menu">
-            {{#each controller.all-users}} <li>{{this.name}}</li> {{/each}}
-          </ul> 
+          {{#if 'isAddingNewUser'}}
+            <button class="btn btn-warning btn-xs" {{action 'cancelUserAdding'}}>x</button>
+            {{input value=newUser action="updateUsers" on="enter"}}
+          {{else}}
+            <button class="btn btn-primary btn-xs" {{action 'addNewUser'}}>+</button>
+          {{/if}}
         </div>
       </h5>
     </div>
     <div class="panel-body">
       <ul class="list-group">
         {{#each users}}
-        <p>
-          {{#link-to 'user' this}}
-            <span>{{this.name}}</span>
-          {{/link-to}}
-          <button class="btn btn-default btn-xs pull-right">x</button>
+        <p>{{#link-to 'user' this}}{{this.name}}{{/link-to}}
+          <button class="btn btn-default btn-xs pull-right" {{action "deleteUser"}}>x</button>
         </p>
         {{/each}}
       </ul>
@@ -80,14 +78,24 @@
 
   <div class="connectors panel panel-default">
     <div class="panel-heading">
-      <div class="panel-title">
-        <h5>Connectors</h5>
-      </div>
+      <h5 class="panel-title">
+        CONNECTORS
+        <div class="btn-group pull-right">
+          {{#if 'isAddingNewConnector'}}
+            <button class="btn btn-warning btn-xs" {{action 'cancelConnectorAdding'}}>x</button>
+            {{input value=newConnector action="updateConnectors" on="enter"}}
+          {{else}}
+            <button class="btn btn-primary btn-xs" {{action 'addNewConnector'}}>+</button>
+          {{/if}}
+        </div>
+      </h5>
     </div>
     <div class="panel-body">
       <ul class="list-group">
         {{#each connectors}}
-          <p>{{#link-to 'connector' this}}{{this.name}}{{/link-to}}</p>
+          <p>{{#link-to 'connector' this}}{{this.name}}{{/link-to}}
+            <button class="btn btn-default btn-xs pull-right" {{action "deleteConnector"}}>x</button>
+          </p>
         {{/each}}
       </ul>
     </div>
@@ -95,16 +103,24 @@
 
   <div class="vehicles panel panel-default">
     <div class="panel-heading">
-      <div class="panel-title">
-        <h5>VEHICLES</h5>
-      </div>
+      <h5 class="panel-title">
+        VEHICLES
+        <div class="btn-group pull-right">
+          {{#if 'isAddingNewVehicle'}}
+            <button class="btn btn-warning btn-xs" {{action 'cancelVehicleAdding'}}>x</button>
+            {{input value=newVehicle action="updateVehicles" on="enter"}}
+          {{else}}
+            <button class="btn btn-primary btn-xs" {{action 'addNewVehicle'}}>+</button>
+          {{/if}}
+        </div>
+      </h5>
     </div>
     <div class="panel-body">
       <ul class="list-group">
         {{#each vehicles}}
-          {{#link-to 'vehicle' this}}
-            <p>{{this.name}}</p>
-          {{/link-to}}
+        <p>{{#link-to 'vehicle' this}}{{this.name}}{{/link-to}}
+          <button class="btn btn-default btn-xs pull-right" {{action "deleteVehicle"}}>x</button>
+        </p>
         {{/each}}
       </ul>
     </div>

@@ -17,6 +17,17 @@ Myapp.ApplicationAdapter = DS.ActiveModelAdapter.extend({
 
 Myapp.ChargePointSerializer = DS.ActiveModelSerializer.extend(DS.EmbeddedRecordsMixin).extend({
 	attrs: {
-		users: {serialize: 'ids', deserialize: 'ids'}
+		users: {serialize: 'ids', deserialize: 'ids'},
+		vehicles: {serialize: 'ids', deserialize: 'ids'},
+		connectors: {serialize: 'ids', deserialize: 'ids'},
+		transactions: {serialize: 'ids', deserialize: 'ids'}
+	}
+});
+
+Myapp.UserSerializer = DS.ActiveModelSerializer.extend(DS.EmbeddedRecordsMixin).extend({
+	attrs: {
+		chargePoints: {serialize: 'ids', deserialize: 'ids'},
+		vehicles: {serialize: 'ids', deserialize: 'ids'},
+		transactions: {serialize: 'ids', deserialize: 'ids'}
 	}
 });

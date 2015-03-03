@@ -5,5 +5,7 @@ Myapp.ChargePointRoute = Ember.Route.extend({
   setupController: function(controller, model) {
   	controller.set('content', model);
   	controller.set('all-users', this.store.find('user'));
+  	controller.set('all-vehicles', this.store.find('vehicle'));
+  	controller.set('all-connectors', this.store.find('connector'));
   }
 });
