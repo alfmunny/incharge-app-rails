@@ -46,6 +46,17 @@ Myapp.ChargePointController = Ember.ObjectController.extend({
       this.set('isAccepted', false);
       this.get('model').save();
       this.transitionToRoute('charge-point');
+    },
+    updateUsers: function() {
+      var chargePoint = this.get('model');
+      var newUser = this.get('newUser');
+      var allUser = this.get('all-users');
+      var user = allUser.findBy('name', newUser);
+      chargePoint.get('users').pushObject(allUser.findBy('name', newUser));
+      user.save();
+      chargePoint.save();
+      console.log(allUser.findBy('name',newUser));
+
     }
   }
 });

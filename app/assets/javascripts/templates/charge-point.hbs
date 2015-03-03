@@ -53,16 +53,26 @@
 
   <div class="users panel panel-default">
     <div class="panel-heading">
-      <div class="panel-title">
-        <h5>USERS</h5>
-      </div>
+      <h5 class="panel-title">
+        USERS
+        <div class="btn-group pull-right">
+          {{input value=newUser action="updateUsers" on="enter"}}
+          <button class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false">+</button>
+          <ul class="dropdown-menu" role="menu">
+            {{#each controller.all-users}} <li>{{this.name}}</li> {{/each}}
+          </ul> 
+        </div>
+      </h5>
     </div>
     <div class="panel-body">
       <ul class="list-group">
         {{#each users}}
+        <p>
           {{#link-to 'user' this}}
-            <p>{{this.name}}</p>
+            <span>{{this.name}}</span>
           {{/link-to}}
+          <button class="btn btn-default btn-xs pull-right">x</button>
+        </p>
         {{/each}}
       </ul>
     </div>

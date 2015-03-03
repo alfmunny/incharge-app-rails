@@ -12,7 +12,7 @@ Myapp.ChargePoint = DS.Model.extend({
   heartbeatInterval: DS.attr('number'),
   chargeBoxSerialNumber: DS.attr('string'),
 
-  users: DS.hasMany('user'),
+  users: DS.hasMany('user', {async: true}),
   vehicles: DS.hasMany('vehicle'),
   trades: DS.hasMany('trade'),
   connectors: DS.hasMany('connector')

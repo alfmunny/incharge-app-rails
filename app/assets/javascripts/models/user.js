@@ -10,6 +10,6 @@ Myapp.User = DS.Model.extend({
   //avatar: attr('string')
 
   vehicles: hasMany('vehicle'),
-  chargePoints: hasMany('chargePoint'),
+  chargePoints: hasMany('chargePoint', { async: true }),
   trades: hasMany('trade')
 });
