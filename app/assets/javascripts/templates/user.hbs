@@ -26,20 +26,20 @@
     <div class="panel-heading">
       <h5 class="panel-title">
         VEHICLES
-        <!-- <button class="btn btn-primary btn-sm" {{action 'addVehicle'}}>Add Vehicle</button> -->
+        <button class="btn btn-primary btn-sm" {{action 'addVehicle'}}>Add Vehicle</button>
       </h5>
     </div>
     <div class="panel-body">
       {{#if 'vehicleAdding'}}
       <p>
-        please enter the name of a existing vehicle: {{input valueBinding='newVehicleId' cols="30" }}
+        please enter the name of a existing vehicle: {{input valueBinding='vehicleName' cols="30" action="doneVehicleAdding" on="enter"}}
         <button class="btn btn-success btn-sm"{{action 'doneVehicleAdding'}}>Done</button>
         <button class="btn btn-primary btn-sm"{{action 'cancelVehicleAdding'}}>cancel</button>
       </p>
       {{/if}}
       {{#each vehicles}}
-        <p>
-          {{#link-to 'vehicle' this }}{{name}}{{/link-to}}
+        <p> {{#link-to 'vehicle' this }}{{name}}{{/link-to}} 
+          <button class="btn btn-default btn-xs pull-right" {{action "deleteVehicle"}}>x</button>
         </p>
       {{/each}}
     </div>
@@ -48,11 +48,20 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h5 class="panel-title">CHARGE POINTS</h5>
+      <button class="btn btn-primary btn-sm" {{action 'addChargePoint'}}>Add Charge Point</button>
     </div>
     <div class="panel-body">
+      {{#if 'chargePointAdding'}}
+      <p>
+        please enter the name of a existing charge point: {{input valueBinding='chargePointName' cols="30" action="doneChargePointAdding" on="enter"}}
+        <button class="btn btn-success btn-sm"{{action 'doneChargePointAdding'}}>Done</button>
+        <button class="btn btn-primary btn-sm"{{action 'cancelChargePointAdding'}}>cancel</button>
+      </p>
+      {{/if}}
       {{#each chargePoints}}
         <p>
           {{#link-to 'charge-point' this }}{{name}}{{/link-to}}
+          <button class="btn btn-default btn-xs pull-right" {{action "deleteChargePoint"}}>x</button>
         </p>
       {{/each}}
     </div>

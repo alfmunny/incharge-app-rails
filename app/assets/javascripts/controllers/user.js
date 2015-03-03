@@ -1,6 +1,7 @@
 Myapp.UserController = Ember.ObjectController.extend({
   isEditing: false,
   vehicleAdding: false,
+  chargePointAdding: false,
   // newVehicleName: "",
   actions: {
     edit: function() {
@@ -23,19 +24,59 @@ Myapp.UserController = Ember.ObjectController.extend({
     addVehicle: function () {
       this.set('vehicleAdding', true);
     },
-    doneVehicleAdding: function () {
-      vehicleId = this.get('newVehicleId');
-      this.set('vehicleAdding', false);
+    doneVehicleAdding: function() {
+      var vehicleName = this.get('vehicleName');
+      var vehicles = this.get('all-vehicles');
+      var vehicle = vehicles.findBy('name', vehicleName);
       var user = this.get('model');
-      this.store.find('vehicle', vehicleId).then(function(vehicle) {
-        user.get('vehicles').pushObject(vehicle);
-        vehicle.get('users').pushObject(user);
-        user.save();
-        vehicle.save();
-      });
+      user.get('vehicles').pushObject(vehicle);
+      user.save();
+      this.set('vehicleAdding', false);
     },
     cancelVehicleAdding: function () {
       this.set('vehicleAdding', false);
+    },
+
+    deleteVehicle: function() {
+      var allVehicles = this.get('all-vehicles');
+      var user = this.get('model');
+      $("button").click(function() {
+        var vehicleName = $(this).siblings().text();
+        // var userName = String(userNameString.match(/[^, ].*[^, ]/g));
+        var vehicle = allVehicles.findBy('name', vehicleName);
+        user.get('vehicles').removeObject(vehicle);
+        user.save();
+      });
+    },
+
+    addChargePoint: function () {
+      this.set('chargePointAdding', true);
+    },
+
+    cancelChargePointAdding: function () {
+      this.set('chargePointAdding', false);
+    },
+
+    doneChargePointAdding: function() {
+      var chargePointName = this.get('chargePointName');
+      var chargePoints = this.get('all-chargePoints');
+      var chargePoint = chargePoints.findBy('name', chargePointName);
+      var user = this.get('model');
+      user.get('chargePoints').pushObject(chargePoint);
+      user.save();
+      this.set('chargePointAdding', false);
+    },
+
+    deleteChargePoint: function() {
+      var allChargePoints = this.get('all-chargePoints');
+      var user = this.get('model');
+      $("button").click(function() {
+        var chargePointName= $(this).siblings().text();
+        // var userName = String(userNameString.match(/[^, ].*[^, ]/g));
+        var chargePoint = allChargePoints.findBy('name', chargePointName);
+        user.get('chargePoints').removeObject(chargePoint);
+        user.save();
+      });
     }
   }
 });
