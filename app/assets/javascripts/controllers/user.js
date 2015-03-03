@@ -2,6 +2,7 @@ Myapp.UserController = Ember.ObjectController.extend({
   isEditing: false,
   vehicleAdding: false,
   chargePointAdding: false,
+  transCounter: 0,
   // newVehicleName: "",
   actions: {
     edit: function() {
@@ -77,6 +78,12 @@ Myapp.UserController = Ember.ObjectController.extend({
         user.get('chargePoints').removeObject(chargePoint);
         user.save();
       });
+    },
+
+    countTrans: function() {
+      var counter = this.get('transCounter');
+      counter += 1;
+      this.set('transCounter', counter);
     }
   }
 });

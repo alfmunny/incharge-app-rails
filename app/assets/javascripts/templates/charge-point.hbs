@@ -137,13 +137,15 @@
     </div>
     <div id="transaction-list" class="collapse in">
       <div class="panel-body">
-        <ul class="list-group">
+        <ol>
           {{#each trades}}
+          <li>
             {{#link-to 'trade' this}}
-              <p>{{this.id}} <span class="small">at {{date this.createdAt}}</span></p>
+              {{this.id}} <span class="small">at {{date this.createdAt}}</span>
             {{/link-to}}
+          </li>
           {{/each}}
-        </ul>
+        </ol>
       </div>
     </div>
   </div>

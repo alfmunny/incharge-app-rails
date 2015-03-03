@@ -26,15 +26,15 @@
     <div class="panel-heading">
       <h5 class="panel-title">
         VEHICLES
-        <button class="btn btn-primary btn-sm" {{action 'addVehicle'}}>Add Vehicle</button>
+        <button class="btn btn-primary btn-xs pull-right" {{action 'addVehicle'}}>Add Vehicle</button>
       </h5>
     </div>
     <div class="panel-body">
       {{#if 'vehicleAdding'}}
       <p>
         please enter the name of a existing vehicle: {{input valueBinding='vehicleName' cols="30" action="doneVehicleAdding" on="enter"}}
-        <button class="btn btn-success btn-sm"{{action 'doneVehicleAdding'}}>Done</button>
-        <button class="btn btn-primary btn-sm"{{action 'cancelVehicleAdding'}}>cancel</button>
+        <button class="btn btn-success btn-xs"{{action 'doneVehicleAdding'}}>Done</button>
+        <button class="btn btn-primary btn-xs"{{action 'cancelVehicleAdding'}}>cancel</button>
       </p>
       {{/if}}
       {{#each vehicles}}
@@ -47,15 +47,16 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h5 class="panel-title">CHARGE POINTS</h5>
-      <button class="btn btn-primary btn-sm" {{action 'addChargePoint'}}>Add Charge Point</button>
+      <h5 class="panel-title">CHARGE POINTS
+        <button class="btn btn-primary btn-xs pull-right" {{action 'addChargePoint'}}>Add Charge Point</button>
+      </h5>
     </div>
     <div class="panel-body">
       {{#if 'chargePointAdding'}}
       <p>
         please enter the name of a existing charge point: {{input valueBinding='chargePointName' cols="30" action="doneChargePointAdding" on="enter"}}
-        <button class="btn btn-success btn-sm"{{action 'doneChargePointAdding'}}>Done</button>
-        <button class="btn btn-primary btn-sm"{{action 'cancelChargePointAdding'}}>cancel</button>
+        <button class="btn btn-success btn-xs"{{action 'doneChargePointAdding'}}>Done</button>
+        <button class="btn btn-primary btn-xs"{{action 'cancelChargePointAdding'}}>cancel</button>
       </p>
       {{/if}}
       {{#each chargePoints}}
@@ -77,14 +78,16 @@
     </div>
     <div id="transaction-list" class="collapse in">
       <div class="panel-body">
+        <ol class="">
         {{#each trades}}
-          <p>
-            {{#link-to 'trade' this }}{{id}}
+          <li>
+            {{#link-to 'trade' this }}Nr.{{id}}
             <span class="small"> at {{date createdAt}}, </span>{{/link-to}}
             <span>{{bill}} €, </span>
             <span>{{energy}} kWh</span>
-          </p>
+          </li>
         {{/each}}
+        </ol>
       </div>
     </div>
   </div>
